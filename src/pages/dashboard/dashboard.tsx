@@ -1,21 +1,11 @@
-import { makeStyles, ThemeProvider, createTheme, Toolbar } from '@material-ui/core'
+import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 import Header from 'src/components/Layout/Header';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#d207ce',
-    },
-    secondary: {
-      main: '#6900ea',
-      light: "#ffffff"
-    },
-  },
-});
+import Hero from 'src/components/Layout/Hero';
+import Main from 'src/components/Layout/Main';
+import { theme as PortionTheme } from 'src/theme/theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
@@ -27,24 +17,22 @@ const useStyles = makeStyles((theme) => ({
   main: {
     flex: 1,
   },
-}))
+}));
 
-type Props = {}
+type Props = {};
 
 export default function Dashboard({}: Props) {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={PortionTheme}>
       <div className={classes.root}>
         <Header />
-        <Toolbar />
-        <div className={classes.container}>
-          <main className={classes.main}>
-            
-          </main>
-        </div>
+        <main className={classes.main}>
+          <Hero></Hero>
+          <Main></Main>
+        </main>
       </div>
     </ThemeProvider>
-  )
+  );
 }
