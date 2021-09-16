@@ -156,7 +156,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   attributes: {
     [theme.breakpoints.down('sm')]: {
-      order: 4
+      order: 4,
+      marginBottom: 25
     }
   },
   smallButton: {
@@ -201,6 +202,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       borderRadius: '50%',
       padding: '9px 15px',
       left: 'calc(25% - 40px)',
+      [theme.breakpoints.down('sm')]: {
+        left: 'calc(50% - 45px)'
+      }
     },
   },
   circle: {
@@ -374,18 +378,20 @@ const Hero = () => {
               <Grid item xs={false} md={2} className={classes.mobileHidden}>
                 <Avatar src={AvatarImg} className={classes.avatar}></Avatar>
               </Grid>
-              <Grid container xs={12} md={6}>
-                <Grid item xs={3} md={12}>
-                  <p>Created by: </p>
-                </Grid>
-                <Grid item xs={4} md={12}>
-                  <p><b> Ron English <img src={CheckBadge} /></b></p>
-                </Grid>
-                <Grid item xs={12} md={12}>
-                  <p>on March 16, 2021:</p>
+              <Grid item xs={12} md={6}>
+                <Grid container>
+                  <Grid item xs={3} md={12}>
+                    <p>Created by: </p>
+                  </Grid>
+                  <Grid item xs={4} md={12}>
+                    <p><b> Ron English <img src={CheckBadge} /></b></p>
+                  </Grid>
+                  <Grid item xs={12} md={12}>
+                    <p>on March 16, 2021:</p>
+                  </Grid>
                 </Grid>
               </Grid>
-              <Grid container xs={12} md={6}>
+              <Grid item xs={12} md={6}>
                 <Grid item xs={6} md={12}>
                   <p>
                     Owner: <b>Sadness</b>
@@ -450,7 +456,7 @@ const Hero = () => {
             </Box>
           </Grid>
 
-          <Grid item md={12}>
+          <Grid item md={12} className={classes.mobileHidden}>
             <PortionButton color='secondary' size='small' radius='hard' outline={true} className={classes.roundButton}>
               <img src={Expand} />
             </PortionButton>
@@ -462,7 +468,7 @@ const Hero = () => {
           <img src={ArrowDown} />
         </ScrollLink>
       </div>
-      <AppBar className={clsx(classes.appBar, showHeroOriginal ? 'hidden' : '')} position='fixed'>
+      <AppBar className={clsx(classes.appBar, showHeroOriginal ? 'hidden' : '', classes.mobileHidden)} position='fixed'>
         <Toolbar className={clsx(classes.toolBar, 'container')}>
           <Box width={1} display='flex' flexDirection='row' justifyContent='space-between' gridGap={34}>
             <Box flexBasis={380}>

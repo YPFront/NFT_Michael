@@ -71,6 +71,18 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginRight: 10,
     },
   },
+  mobileHidden: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    }
+  },
+  paper: {
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: -25,
+      width: 'calc(100% + 50px)',
+      boxShadow: 'none'
+    }
+  }
 }));
 
 const CreatorSection = () => {
@@ -106,7 +118,7 @@ const CreatorSection = () => {
   return (
     <div>
       <Typography variant='h4'>Creator</Typography>
-      <Paper square>
+      <Paper square className={classes.paper}>
         <Box>
           <Box mt={3}>
             <img src={CreatorBack} className={classes.creatorBack} />
@@ -129,7 +141,7 @@ const CreatorSection = () => {
           <Box>
             <b>More from Ron</b>
             <Box className={classes.carousel} mt={1} mb={3}>
-              <Slider dots={false} slidesToShow={3} slidesToScroll={1} swipe={false} ref={(slider) => (sliderRef = slider)} variableWidth={true}>
+              <Slider dots={false} slidesToShow={3} slidesToScroll={1} swipe={true} ref={(slider) => (sliderRef = slider)} variableWidth={true}>
                 {moreCharacters.map((item, i) => (
                   <Link href={item.link} key={i}>
                     <img src={item.src} />
@@ -144,7 +156,7 @@ const CreatorSection = () => {
                   See all of Matteo’s creations{' '}
                 </PortionButton>
               </Box>
-              <Box>
+              <Box className={classes.mobileHidden}>
                 <PortionButton
                   className={classes.roundButton}
                   color='primary'
@@ -158,7 +170,7 @@ const CreatorSection = () => {
                   &lt;{' '}
                 </PortionButton>
               </Box>
-              <Box>
+              <Box className={classes.mobileHidden}>
                 <PortionButton
                   className={classes.roundButton}
                   color='primary'

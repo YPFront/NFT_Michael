@@ -6,18 +6,23 @@ import Background1 from 'src/assets/img/background2.svg'
 import Background2 from 'src/assets/img/background3.svg'
 
 const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    position: 'relative'
+  },
   background1: {
     position: 'absolute',
     opacity: 0.1,
     minWidth: 776,
-    width: '60%',
-    top: 40,
-    right: '-2%'
+    top: -40,
+    right: 'calc(-2% - 180px)',
+    [theme.breakpoints.down('sm')]: {
+      opacity: 0.2
+    }
   },
   background2: {
     width: '100%',
     padding: '0 96px',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
   }
 }));
 
@@ -69,7 +74,7 @@ const ActivitySection = () => {
   ]
 
   return (
-    <div>
+    <div className={classes.root}>
       <img src={Background1} className={classes.background1}/>
       <Typography variant="h4"> Activity </Typography>
       <ActivityList data={data}></ActivityList>

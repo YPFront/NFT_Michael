@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: theme.palette.background.default,
     overflow: 'hidden'
   },
+  mobileHidden: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    }
+  },
 }));
 
 const Main = (props: any) => {
@@ -31,7 +36,7 @@ const Main = (props: any) => {
 
           <CreatorSection></CreatorSection>
         </Grid>
-        <Grid item md={1} xs={12}>
+        <Grid item md={1} xs={12} className={classes.mobileHidden}>
           <Box width={1} textAlign='center'>
             <img src={PGoldMark}/>
           </Box>

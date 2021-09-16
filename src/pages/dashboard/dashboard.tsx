@@ -18,10 +18,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('lg')]: {
       fontSize: 18,
       lineHeight: '21.5px',
-      '& p': {
-        marginBlockStart: 8,
-        marginBlockEnd: 8
-      }
+      // '& p': {
+      //   marginBlockStart: 8,
+      //   marginBlockEnd: 8
+      // }
     }
   },
   container: {

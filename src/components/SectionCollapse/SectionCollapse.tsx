@@ -8,6 +8,7 @@ import CollapseUp from 'src/assets/img/collapse_up.svg';
 type Props = {
   children: React.ReactNode;
   title: React.ReactNode;
+  open?: boolean;
 };
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -26,8 +27,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const SectionCollapse = (props: Props) => {
-  const { children, title } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const { children, title, open } = props;
+  const [isOpen, setIsOpen] = useState(open == true);
   const classes = useStyles();
 
   return (

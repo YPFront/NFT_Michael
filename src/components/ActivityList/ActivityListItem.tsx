@@ -53,6 +53,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
+  actionStringContainer: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap'
+  },
   actionString: {
     marginBottom: -6,
   },
@@ -69,7 +74,7 @@ const ActivityListItem = (props: Props) => {
   return (
     <Button fullWidth={true} color='inherit' className={classes.button}>
       <Box width={1} display='flex' height={1}>
-        <Box flexGrow={1} py={1.2} px={3} height={1} boxSizing='border-box'>
+        <Box flexGrow={1} py={1.2} px={3} height={1} boxSizing='border-box' className={classes.actionStringContainer}>
           <div className={classes.actionString}>
             <b>{userId1}</b> {action} <b>{userId2}</b>
           </div>

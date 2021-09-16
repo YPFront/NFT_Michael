@@ -14,10 +14,16 @@ const useStyles = makeStyles((theme: Theme) => ({
         marginLeft: 0,
       },
     },
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
   },
   nav: {
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
+    }
   }
 }));
 
@@ -26,10 +32,10 @@ const Footer = () => {
   return (
     <div className={clsx(classes.root, 'container')}>
       <Grid container>
-        <Grid item md={6}>
+        <Grid item md={6} xs={12}>
           <Link href='#'>hello@portion.io</Link>
         </Grid>
-        <Grid item md={6} className={classes.nav}>
+        <Grid item md={6} xs={12} className={classes.nav}>
           <Link href='#'>Terms of Use</Link>
           <Link href='#'>Privacy Policy</Link>
           <Link href='#'>Copyright</Link>
