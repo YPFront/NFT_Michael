@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Button, { ButtonTypeMap } from '@material-ui/core/Button';
 import { PropTypes } from '@material-ui/core';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -45,21 +46,22 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-type Props = {
+interface Props {
   color: PropTypes.Color;
   radius?: string;
   children: React.ReactNode;
   outline?: boolean;
   className?: string;
+  width?: number;
   size?: 'small' | 'medium' | 'large';
 };
 
-export default function PortionButton(props: Props) {
-  const { color, radius, children, outline, size, className } = props;
+export default function PortionButton(props: any) {
+  const { color, radius, children, outline, size, className, ...other } = props;
   const classes = useStyles();
 
   return (
-    <Button variant={outline ? 'outlined' : 'contained'} size={size ? size : 'medium'} color={color} className={clsx(classes.button, radius == 'hard' ? classes.buttonRadiusHard : classes.buttonRadiusNormal, className)}>
+    <Button variant={outline ? 'outlined' : 'contained'} size={size ? size : 'medium'} color={color} className={clsx(classes.button, radius == 'hard' ? classes.buttonRadiusHard : classes.buttonRadiusNormal, className)} {...other}>
       {children}
     </Button>
   );

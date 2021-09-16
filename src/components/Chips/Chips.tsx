@@ -44,7 +44,7 @@ const Chips = (props: Props) => {
     <ToggleButtonGroup value={selected} className={clsx(classes.root, className)} onChange={handleChange}>
       {
         data.map((item, index) => (
-          <ToggleButton value={item} aria-label={item} className={classes.toggleButton}>
+          <ToggleButton key={index} value={item} aria-label={item} className={classes.toggleButton}>
             {item}
           </ToggleButton>
         ))

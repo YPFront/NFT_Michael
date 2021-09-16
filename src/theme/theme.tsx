@@ -17,6 +17,9 @@ export const theme = createTheme({
         main: '#DAB679',
         dark: '#CB9C4E',
       },
+      background: {
+        default: '#FCF8F2'
+      }
     },
     shape: {
       borderRadius: 8
@@ -47,4 +50,5 @@ export const theme = createTheme({
         textTransform: 'none'
       }
     },
+    spacing: 8,
   });

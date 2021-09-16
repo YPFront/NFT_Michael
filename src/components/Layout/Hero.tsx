@@ -136,6 +136,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: 35,
     '& a': {
       position: 'absolute',
+      zIndex: 1,
       background: '#0D455C',
       borderRadius: '50%',
       padding: '9px 15px',
