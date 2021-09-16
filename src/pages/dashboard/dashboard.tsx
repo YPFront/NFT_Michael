@@ -1,7 +1,7 @@
 import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 import Header from 'src/components/Layout/Header';
 import Hero from 'src/components/Layout/Hero';
-import Main from 'src/components/Layout/Main';
+import Main from 'src/components/Layout/Main/Main';
 import { theme as PortionTheme } from 'src/theme/theme';
 
 const useStyles = makeStyles((theme) => ({

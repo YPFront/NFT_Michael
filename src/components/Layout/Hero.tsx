@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   background1: {
-    width: '936px',
+    width: 936,
     position: 'absolute',
     top: '30%',
     left: '-2%',
