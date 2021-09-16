@@ -13,7 +13,7 @@ const DescriptionSection = () => {
     <div>
       <Box>
         <Typography variant='h4'>Description</Typography>
-        <Readmore height={170}>
+        <Readmore height={160}>
           <p>Batman White Knight Presents Harley Quinn #5 page #4 interior art by Matteo Scalera.</p>
           <p>The purchase of this NFT also entitles the buyer to the original 11x17 signed physical art by Matteo Scalera. Ships in 4-6 weeks.</p>
           <p>Suspendisse eu augue vel lorem convallis tristique laoreet sed nisl. Sed congue est a purus suscipit molestie. Vivamus luctus augue nec commodo tristique. Read less</p>

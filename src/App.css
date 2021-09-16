@@ -2,11 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 
 .App {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 24px;
 }
 
 .container {
@@ -16,4 +11,11 @@
 
 .MuiBox-root {
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+  } 
 }

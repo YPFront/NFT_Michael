@@ -1,5 +1,5 @@
 import { AppBar, Avatar, Box, Grid, Link, Paper, Toolbar, Typography } from '@material-ui/core';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Background1 from 'src/assets/img/background1.svg';
 import Character from 'src/assets/img/character.svg';
@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: 'hidden',
     position: 'relative',
     color: theme.palette.common.white,
+    [theme.breakpoints.down('lg')]: {
+      minHeight: 'unset'
+    }
   },
   main: {
     marginTop: 100,
@@ -33,7 +36,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: 'relative',
     '&>.MuiGrid-item': {
       paddingTop: 0,
-    },
+      [theme.breakpoints.down('md')]: {
+        padding: 25
+      }
+    }    
   },
   background1: {
     width: 936,
@@ -48,6 +54,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    marginTop: 15,
+    marginBottom: 15,
     '& .MuiPaper-root': {
       padding: 10,
       width: '100%',
@@ -59,8 +67,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     '& img': {
       width: '100%',
-      //maxHeight: 'calc(100vh - 280px)'
-    },
+      maxHeight: 800,
+    }
   },
   detailPanel: {
     display: 'flex',
@@ -75,11 +83,23 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'center',
     marginTop: 25,
-    marginBottom: 64,
+    marginBottom: 25,
     '& p': {
       marginBlockStart: 3,
       marginBlockEnd: 3,
     },
+    [theme.breakpoints.up('lg')]: {
+      marginBottom: 64
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+      order: 3,
+      marginTop: 0,
+      marginBottom: 10,
+      '& > .MuiGrid-root': {
+        marginBottom: 15
+      }
+    }
   },
   avatar: {
     border: '2px solid',
@@ -96,6 +116,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: 36,
     lineHeight: '43.2px',
     marginLeft: 10,
+    [theme.breakpoints.down('md')]: {
+      fontSize: 28,
+      lineHeight: '34px'
+    }
   },
   listPrice: {
     '& .MuiGrid-item': {
@@ -105,31 +129,65 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& p': {
       marginBottom: 5,
     },
+    '& .price-label': {
+      width: '100%'
+    },
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      order: 1,
+      marginTop: 20,
+      '& .price-label': {
+        width: 'fit-content'
+      }
+    }
   },
   action: {
-    marginTop: 36,
-    marginBottom: 36,
+    marginTop: 20,
+    marginBottom: 20,
     '& button': {
       width: '100%',
       height: 50,
       fontSize: 20,
     },
+    [theme.breakpoints.down('sm')]: {
+      order: 2
+    }
   },
-  attributes: {},
+  attributes: {
+    [theme.breakpoints.down('sm')]: {
+      order: 4
+    }
+  },
   smallButton: {
     fontSize: 20,
     lineHeight: '24px',
     padding: '9px 19px',
     marginRight: 18,
+    minHeight: 'unset',
     '& img': {
       marginRight: 13.5,
     },
+    [theme.breakpoints.down('sm')]: {
+      padding: '6px 10px',
+      fontSize: 16,
+      lineHeight: '19px',
+      fontWeight: 'normal'
+    }
   },
   roundButton: {
     borderRadius: '50%',
     padding: '10px',
     minWidth: 'unset',
+    minHeight: 'unset',
     marginRight: 17,
+    [theme.breakpoints.down('sm')]: {
+      padding: '7px',
+      '& img': {
+        width: 15,
+        height: 15
+      }
+    }
   },
   moveDown: {
     width: '100%',
@@ -187,20 +245,55 @@ const useStyles = makeStyles((theme: Theme) => ({
     transition: 'height 0.3s',
     overflow: 'hidden',
     '&.hidden': {
-      height: 0
-    }
+      height: 0,
+    },
   },
   toolBar: {
     height: 100,
     paddingTop: 21,
     paddingBottom: 21,
-    minHeight: 'unset'
+    minHeight: 'unset',
   },
   navPriceText: {
-    marginTop: 28
+    marginTop: 28,
   },
   navbarButton: {
-    padding: '8px 39px'
+    padding: '8px 39px',
+  },
+  mobileHidden: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    }
+  },
+  mobileShow: {
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'inherit',
+    }
+  },
+  tabletHidden: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    }
+  },
+  mobileCenter: {
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
+  },
+  mobileLeft: {
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'left',
+    }
+  },
+  mobileCharacter: {
+    '& .MuiPaper-root': {
+      width: '100%',
+      padding: 5
+    },
+    '& img': {
+      width: '100%'
+    }
   }
 }));
 
@@ -220,6 +313,8 @@ const Hero = () => {
   const classes = useStyles();
   const [showHeroOriginal, setShowHeroOriginal] = useState(true);
   let thisRef = createRef<HTMLDivElement>();
+  const theme = useTheme();
+  console.log(theme.breakpoints.up('sm'));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -231,9 +326,9 @@ const Hero = () => {
       const scrollPosition = window.scrollY;
 
       if (scrollPosition >= headerHeight + heroHeight) {
-        setShowHeroOriginal(false)
+        setShowHeroOriginal(false);
       } else {
-        setShowHeroOriginal(true)
+        setShowHeroOriginal(true);
       }
     };
 
@@ -245,9 +340,7 @@ const Hero = () => {
   });
 
   return (
-    <div
-      ref={thisRef}
-    >
+    <div ref={thisRef}>
       <div className={clsx(classes.root, 'container')}>
         <div className={classes.background1}>
           <img src={Background1} />
@@ -257,77 +350,90 @@ const Hero = () => {
         <div className={clsx(classes.circle, classes.circle3)}></div>
 
         <Grid container className={classes.main} spacing={10}>
-          <Grid item md={6} xs={12} className={classes.characterContainer}>
-            <Paper elevation={20}>
+          <Grid item md={6} xs={12} className={clsx(classes.characterContainer, classes.mobileHidden)}>
+            <Paper elevation={20} square>
               <img src={Character} />
             </Paper>
           </Grid>
 
           <Grid item md={6} xs={12} className={classes.detailPanel}>
             <Grid container>
-              <Grid item xs={10}>
+              <Grid item lg={10} xs={12} >
                 <Typography variant='h3'>NFT title goes here and also on this second line</Typography>
                 <p>
                   Part of the <b>Batman White Knight Presents</b> Collection
                 </p>
               </Grid>
             </Grid>
-            <Grid container wrap='nowrap' className={classes.ownerInfo}>
-              <Grid item xs={2}>
+            <Grid className={clsx(classes.mobileShow, classes.mobileCharacter)} container>
+              <Paper elevation={20} square>
+                <img src={Character} />
+              </Paper>
+            </Grid>
+            <Grid container className={classes.ownerInfo} wrap='nowrap'>
+              <Grid item xs={false} md={2} className={classes.mobileHidden}>
                 <Avatar src={AvatarImg} className={classes.avatar}></Avatar>
               </Grid>
-              <Grid item xs={6}>
-                <p>Created by:</p>
-                <p>
-                  <b>
-                    Ron English <img src={CheckBadge} />
-                  </b>
-                </p>
-                <p>on March 16, 2021:</p>
+              <Grid container xs={12} md={6}>
+                <Grid item xs={3} md={12}>
+                  <p>Created by: </p>
+                </Grid>
+                <Grid item xs={4} md={12}>
+                  <p><b> Ron English <img src={CheckBadge} /></b></p>
+                </Grid>
+                <Grid item xs={12} md={12}>
+                  <p>on March 16, 2021:</p>
+                </Grid>
               </Grid>
-              <Grid item xs={6}>
-                <p>
-                  Owner: <b>Sadness</b>
-                </p>
-                <p>
-                  Token ID: <b>88</b>
-                </p>
+              <Grid container xs={12} md={6}>
+                <Grid item xs={6} md={12}>
+                  <p>
+                    Owner: <b>Sadness</b>
+                  </p>
+                </Grid>
+                <Grid item xs={6} md={12}>
+                  <p>
+                    Token ID: <b>88</b>
+                  </p>
+                </Grid>
               </Grid>
             </Grid>
-            <Grid container className={classes.listPrice}>
-              <Grid item md={12}>
+            <Grid container className={classes.listPrice} justifyContent="space-around">
+              <Box className='price-label'>
                 <p>Listing Price</p>
-              </Grid>
-              <Grid item md={4}>
+              </Box>
+              <Box>
                 <img src={PWhiteMark} />
                 <span className={classes.priceText}>10,000 PRT</span>
-              </Grid>
-              <Grid item md={1}>
-                <p> or </p>
-              </Grid>
-              <Grid item md={4}>
+              </Box>
+              <Box mx={1}>
+                <p>or</p>
+              </Box>
+              <Box>
                 <img src={Etherum} />
                 <span className={classes.priceText}>6.626 ETH</span>
-              </Grid>
+              </Box>
+              <Box flexGrow={1}></Box>
             </Grid>
             <Grid container className={classes.action} spacing={3}>
-              <Grid item md={6}>
+              <Grid item xs={12} md={6}>
                 <PortionButton color='secondary'>Buy</PortionButton>
               </Grid>
-              <Grid item md={6}>
+              <Grid item xs={12} md={6}>
                 <PortionButton color='secondary' outline={true}>
                   Make an Offer
                 </PortionButton>
               </Grid>
             </Grid>
-            <Grid container className={classes.attributes} spacing={3} justifyContent='space-between'>
-              <Grid item md={4}>
+            <Box className={classes.attributes} display='flex' justifyContent='space-between'>
+              <Box>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.smallButton}>
                   <img src={Eye} /> Watch
                 </PortionButton>
-                <span>Views: 597</span>
-              </Grid>
-              <Grid item md={4}>
+                <span className={classes.tabletHidden}>Views: 597</span>
+              </Box>
+              <Box flexGrow={1}></Box>
+              <Box>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
                   <img src={Facebook} />
                 </PortionButton>
@@ -340,8 +446,8 @@ const Hero = () => {
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
                   <img src={LinkImg} />
                 </PortionButton>
-              </Grid>
-            </Grid>
+              </Box>
+            </Box>
           </Grid>
 
           <Grid item md={12}>
@@ -360,15 +466,16 @@ const Hero = () => {
         <Toolbar className={clsx(classes.toolBar, 'container')}>
           <Box width={1} display='flex' flexDirection='row' justifyContent='space-between' gridGap={34}>
             <Box flexBasis={380}>
-              <Typography variant="h5">NFT title goes here and also on this extremely long second line</Typography>
+              <Typography variant='h5'>NFT title goes here and also on this extremely long second line</Typography>
             </Box>
-            <Box flexGrow='1'>
-            </Box>
+            <Box flexGrow='1'></Box>
             <Box className={classes.navPriceText}>
-              Reserve price <b>10,000 PRT</b>  or <b>6.626 ETH</b>
+              Reserve price <b>10,000 PRT</b> or <b>6.626 ETH</b>
             </Box>
             <Box flexBasis={332} display='flex' justifyContent='space-between' alignItems='center'>
-              <PortionButton color='secondary' className={classes.navbarButton}>Buy</PortionButton>
+              <PortionButton color='secondary' className={classes.navbarButton}>
+                Buy
+              </PortionButton>
               <PortionButton color='secondary' outline={true} className={classes.navbarButton}>
                 Make an Offer
               </PortionButton>

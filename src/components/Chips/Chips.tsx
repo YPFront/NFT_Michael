@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   toggleButton: {
     color: theme.palette.primary.main,
+    padding: '5px 16px',
+    height: 36,
+    minHeight: 'unset',
     '&.MuiButtonBase-root': {
       borderRadius: 8,
       border: `1px solid ${theme.palette.primary.main}`,

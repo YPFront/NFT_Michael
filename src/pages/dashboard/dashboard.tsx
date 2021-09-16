@@ -10,7 +10,19 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
-    background: theme.palette.background.default
+    background: theme.palette.background.default,
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 20,
+    lineHeight: '24px',
+    [theme.breakpoints.down('lg')]: {
+      fontSize: 18,
+      lineHeight: '21.5px',
+      '& p': {
+        marginBlockStart: 8,
+        marginBlockEnd: 8
+      }
+    }
   },
   container: {
     display: 'flex',

@@ -1,5 +1,13 @@
 import { createTheme } from "@material-ui/core";
 
+const media = {
+  xs: 0,
+  sm: 500,
+  md: 992,
+  lg: 1280,
+  xl: 1920,
+};
+
 export const theme = createTheme({
     palette: {
       primary: {
@@ -34,12 +42,20 @@ export const theme = createTheme({
       },
       h3: {
         fontFamily: '"DM Serif Display"',
+        [`@media (max-width:${media.lg}px)`]: {
+          fontSize: 30,
+          lineHeight: '36px'
+        },
       },
       h4: {
         fontFamily: 'Lato',
         fontWeight: 'bold',
         fontSize: 36,
-        lineHeight: '43px'
+        lineHeight: '43px',
+        [`@media (max-width:${media.lg}px)`]: {
+          fontSize: 28,
+          lineHeight: '34px'
+        },
       },
       h5: {
         fontFamily: 'Lato',
@@ -57,4 +73,9 @@ export const theme = createTheme({
       }
     },
     spacing: 8,
+    breakpoints: {
+      values: {
+        ...media
+      },
+    }
   });

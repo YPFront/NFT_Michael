@@ -37,8 +37,13 @@ const useStyles = makeStyles((theme: Theme) => ({
       background: '#0066991A',
     },
     '& svg': {
-      marginRight: 12.5,
+      marginRight: 12.5
     },
+    '&:hover': {
+      '& svg path': {
+        fill: theme.palette.common.white
+      }
+    }
   },
   bigButton: {
     height: 50,
@@ -101,7 +106,7 @@ const CreatorSection = () => {
   return (
     <div>
       <Typography variant='h4'>Creator</Typography>
-      <Paper>
+      <Paper square>
         <Box>
           <Box mt={3}>
             <img src={CreatorBack} className={classes.creatorBack} />
@@ -116,7 +121,7 @@ const CreatorSection = () => {
             <p>Italian ComicBook artist working for Image, DC, Marvel, Netflix, Boom!studios.</p>
             <Box>
               <PortionButton color='primary' size='small' radius='hard' outline={true} className={clsx(classes.smallButton, 'active')}>
-                <Eye fill='#00000' className={classes.eye} /> Following
+                <Eye className={classes.eye} /> Following
               </PortionButton>
               <span> 1,255 following </span>
             </Box>

@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& .collapse-css-transition': {
       transition: 'height 300ms cubic-bezier(0.4, 0, 0.2, 1)'
     }
+  },
+  link: {
+    marginTop: 20,
+    display: 'block'
   }
 }));
 
@@ -25,7 +29,7 @@ const Readmore = (props: Props) => {
       <Collapse addState isOpen={isOpen} collapseHeight={height + 'px'}>
         {children}
       </Collapse>
-      <Link href="#" onClick={(e) => {e.preventDefault(); setIsOpen(!isOpen);}}>{isOpen ? 'Read less' : 'Read more'}</Link>
+      <Link href="#" className={classes.link} onClick={(e) => {e.preventDefault(); setIsOpen(!isOpen);}}>{isOpen ? 'Read less' : 'Read more'}</Link>
     </section>
   );
 };
