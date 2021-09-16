@@ -6,7 +6,7 @@ import SectionCollapse from '../../SectionCollapse';
 
 const useStyles = makeStyles((theme: Theme) => ({}));
 
-const DescriptionPart = () => {
+const DescriptionSection = () => {
   const classes = useStyles();
 
   return (
@@ -29,4 +29,4 @@ const DescriptionPart = () => {
   );
 };
 
-export default DescriptionPart;
+export default DescriptionSection;

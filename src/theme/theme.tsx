@@ -41,6 +41,12 @@ export const theme = createTheme({
         fontSize: 36,
         lineHeight: '43px'
       },
+      h5: {
+        fontFamily: 'Lato',
+        fontWeight: 'bold',
+        fontSize: 24,
+        lineHeight: '28.8px'
+      },
       button: {
         padding: '6px 22px',
         fontWeight: 700,

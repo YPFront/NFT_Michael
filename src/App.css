@@ -13,3 +13,7 @@
   padding-left: 64px !important;
   padding-right: 64px !important;
 }
+
+.MuiBox-root {
+  box-sizing: border-box;
+}

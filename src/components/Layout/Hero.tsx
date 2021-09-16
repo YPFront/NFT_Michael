@@ -1,4 +1,4 @@
-import { Avatar, Box, Grid, Link, Paper, Typography } from '@material-ui/core';
+import { AppBar, Avatar, Box, Grid, Link, Paper, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Background1 from 'src/assets/img/background1.svg';
@@ -15,6 +15,8 @@ import LinkImg from 'src/assets/img/link.svg';
 import ArrowDown from 'src/assets/img/arrow_down.svg';
 import Expand from 'src/assets/img/expand.svg';
 import PortionButton from '../PortionButton';
+import { Link as ScrollLink } from 'react-scroll';
+import { createRef, useEffect, useRef, useState } from 'react';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -22,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: 'linear-gradient(180deg, #042A3D 0%, #0C445B 53.48%)',
     overflow: 'hidden',
     position: 'relative',
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
   },
   main: {
     marginTop: 100,
@@ -30,8 +32,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingTop: 23,
     position: 'relative',
     '&>.MuiGrid-item': {
-      paddingTop: 0
-    }
+      paddingTop: 0,
+    },
   },
   background1: {
     width: 936,
@@ -120,14 +122,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '9px 19px',
     marginRight: 18,
     '& img': {
-      marginRight: 13.5
-    }
+      marginRight: 13.5,
+    },
   },
   roundButton: {
     borderRadius: '50%',
     padding: '10px',
     minWidth: 'unset',
-    marginRight: 17
+    marginRight: 17,
   },
   moveDown: {
     width: '100%',
@@ -140,8 +142,8 @@ const useStyles = makeStyles((theme: Theme) => ({
       background: '#0D455C',
       borderRadius: '50%',
       padding: '9px 15px',
-      left: 'calc(25% - 40px)'
-    }
+      left: 'calc(25% - 40px)',
+    },
   },
   circle: {
     borderWidth: 1,
@@ -177,12 +179,75 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: '50%',
     opacity: 0.5,
   },
+  appBar: {
+    background: 'linear-gradient(180deg, #042A3D 0%, #0C445B 78%)',
+    color: theme.palette.common.white,
+    boxShadow: 'none',
+    height: 100,
+    transition: 'height 0.3s',
+    overflow: 'hidden',
+    '&.hidden': {
+      height: 0
+    }
+  },
+  toolBar: {
+    height: 100,
+    paddingTop: 21,
+    paddingBottom: 21,
+    minHeight: 'unset'
+  },
+  navPriceText: {
+    marginTop: 28
+  },
+  navbarButton: {
+    padding: '8px 39px'
+  }
 }));
+
+const getDimensions = (ele: HTMLDivElement) => {
+  const { height } = ele.getBoundingClientRect();
+  const offsetTop = ele.offsetTop;
+  const offsetBottom = offsetTop + height;
+
+  return {
+    height,
+    offsetTop,
+    offsetBottom,
+  };
+};
 
 const Hero = () => {
   const classes = useStyles();
+  const [showHeroOriginal, setShowHeroOriginal] = useState(true);
+  let thisRef = createRef<HTMLDivElement>();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!thisRef.current) {
+        return;
+      }
+      const { height: heroHeight } = getDimensions(thisRef.current);
+      const headerHeight = 100;
+      const scrollPosition = window.scrollY;
+
+      if (scrollPosition >= headerHeight + heroHeight) {
+        setShowHeroOriginal(false)
+      } else {
+        setShowHeroOriginal(true)
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
+
   return (
-    <div>
+    <div
+      ref={thisRef}
+    >
       <div className={clsx(classes.root, 'container')}>
         <div className={classes.background1}>
           <img src={Background1} />
@@ -190,7 +255,7 @@ const Hero = () => {
         <div className={clsx(classes.circle, classes.circle1)}></div>
         <div className={clsx(classes.circle, classes.circle2)}></div>
         <div className={clsx(classes.circle, classes.circle3)}></div>
-        
+
         <Grid container className={classes.main} spacing={10}>
           <Grid item md={6} xs={12} className={classes.characterContainer}>
             <Paper elevation={20}>
@@ -264,29 +329,53 @@ const Hero = () => {
               </Grid>
               <Grid item md={4}>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={Facebook}/>
+                  <img src={Facebook} />
                 </PortionButton>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={Twitter}/>
+                  <img src={Twitter} />
                 </PortionButton>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={Telegram}/>
+                  <img src={Telegram} />
                 </PortionButton>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={LinkImg}/>
+                  <img src={LinkImg} />
                 </PortionButton>
               </Grid>
             </Grid>
           </Grid>
-        
+
           <Grid item md={12}>
-            <PortionButton color='secondary' size='small' radius='hard' outline={true} className={classes.roundButton}><img src={Expand}/></PortionButton>
+            <PortionButton color='secondary' size='small' radius='hard' outline={true} className={classes.roundButton}>
+              <img src={Expand} />
+            </PortionButton>
           </Grid>
         </Grid>
       </div>
       <div className={classes.moveDown}>
-        <Link href="#"> <img src={ArrowDown}/> </Link>
+        <ScrollLink href='#' activeClass='active' to='Main-Page' spy={true} smooth={true} hashSpy={true} offset={50} duration={500} delay={0} isDynamic={true} ignoreCancelEvents={false}>
+          <img src={ArrowDown} />
+        </ScrollLink>
       </div>
+      <AppBar className={clsx(classes.appBar, showHeroOriginal ? 'hidden' : '')} position='fixed'>
+        <Toolbar className={clsx(classes.toolBar, 'container')}>
+          <Box width={1} display='flex' flexDirection='row' justifyContent='space-between' gridGap={34}>
+            <Box flexBasis={380}>
+              <Typography variant="h5">NFT title goes here and also on this extremely long second line</Typography>
+            </Box>
+            <Box flexGrow='1'>
+            </Box>
+            <Box className={classes.navPriceText}>
+              Reserve price <b>10,000 PRT</b>  or <b>6.626 ETH</b>
+            </Box>
+            <Box flexBasis={332} display='flex' justifyContent='space-between' alignItems='center'>
+              <PortionButton color='secondary' className={classes.navbarButton}>Buy</PortionButton>
+              <PortionButton color='secondary' outline={true} className={classes.navbarButton}>
+                Make an Offer
+              </PortionButton>
+            </Box>
+          </Box>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 };

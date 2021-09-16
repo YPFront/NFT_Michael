@@ -1,4 +1,5 @@
 import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
+import Footer from 'src/components/Layout/Footer';
 import Header from 'src/components/Layout/Header';
 import Hero from 'src/components/Layout/Hero';
 import Main from 'src/components/Layout/Main/Main';
@@ -33,6 +34,7 @@ export default function Dashboard({}: Props) {
           <Hero></Hero>
           <Main></Main>
         </main>
+        <Footer />
       </div>
     </ThemeProvider>
   );

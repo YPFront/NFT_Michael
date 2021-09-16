@@ -28,7 +28,7 @@ const ActivityList = (props: Props) => {
     <ul className={classes.root}>
       {data.map((item, index) => {
         return (
-          <li>
+          <li key={index}>
             <ActivityListItem key={index} data={item}></ActivityListItem>
           </li>
         );

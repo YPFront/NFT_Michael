@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: 100,
     paddingTop: 24,
     paddingBottom: 24,
+    minHeight: 'unset'
   },
   logo: {
     'margin-right': '15px',
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const Header = () => {
   const classes = useStyles();
   return (
-    <AppBar className={classes.appBar} position='fixed'>
+    <AppBar className={classes.appBar} position="absolute">
       <Toolbar className={clsx(classes.toolBar, 'container')}>
         <Box width={1} display='flex' flexDirection='row' justifyContent='space-between'>
           <Link href='#'>

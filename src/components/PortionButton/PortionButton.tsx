@@ -30,6 +30,13 @@ const useStyles = makeStyles((theme: Theme) =>
           color: theme.palette.common.black
         },
       },
+      '&.MuiButton-outlinedPrimary': {
+        color: theme.palette.primary.main,
+        '&:hover': {
+          background: theme.palette.primary.main,
+          color: theme.palette.common.white
+        },
+      },
       "&.MuiButton-colorInherit.MuiButton-outlined": {
         opacity: 0.5,
         "&:hover": {

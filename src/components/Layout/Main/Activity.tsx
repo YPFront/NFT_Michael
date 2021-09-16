@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-const ActivityPart = () => {
+const ActivitySection = () => {
   const classes = useStyles();
   const data: ActivityType[] = [
     {
@@ -78,4 +78,4 @@ const ActivityPart = () => {
   );
 };
 
-export default ActivityPart;
+export default ActivitySection;
