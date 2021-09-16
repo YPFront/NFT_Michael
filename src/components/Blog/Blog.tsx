@@ -1,5 +1,6 @@
-import { Avatar, Box } from '@material-ui/core';
+import { Avatar, Box, Link } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import { BlogType } from './BlogType';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -19,33 +20,47 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   username: {
-    marginLeft: 4
+    marginLeft: 4,
+    lineHeight: '30px'
+  },
+  link: {
+    color: theme.palette.common.black,
+    '&:hover': {
+      textDecoration: 'none'
+    }
+  },
+  hidden: {
+    visibility: 'hidden'
   }
 }));
 
 type Props = {
   data: BlogType;
+  showUser?: boolean;
+  className?: string;
 };
 
 const Blog = (props: Props) => {
-  const { data } = props;
+  const { data, showUser, className } = props;
   const classes = useStyles();
 
   return (
-    <Box width={1} display='flex' flexDirection='column' justifyContent='space-around' gridGap={16} className={classes.root}>
-      <img src={data.src}/>
-      <Box px={2.5} display='flex' flexDirection='column' justifyContent='space-around' gridGap={3}>
-        <Box>
-          <b>{data.title}</b>
-        </Box>
-        <Box display='flex'>
-          <Avatar className={classes.avatar} src={data.avatar}/> <div className={classes.username}>{data.userName}</div>
-        </Box>
-        <Box>
-          {data.prt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} PRT or {data.eth.toFixed(2)} ETH
+    <Link href="#" className={clsx(classes.link, className)}>
+      <Box width={1} display='flex' flexDirection='column' justifyContent='space-around' gridGap={16} className={classes.root}>
+        <img src={data.src}/>
+        <Box px={2.5} display='flex' flexDirection='column' justifyContent='space-around' gridGap={3}>
+          <Box>
+            <b>{data.title}</b>
+          </Box>
+          <Box display='flex' className={showUser !== false ? '' : classes.hidden}>
+            <Avatar className={classes.avatar} src={data.avatar}/> <div className={classes.username}>{data.userName}</div>
+          </Box>
+          <Box>
+            {data.prt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} PRT or {data.eth.toFixed(2)} ETH
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </Link>
   );
 };
 

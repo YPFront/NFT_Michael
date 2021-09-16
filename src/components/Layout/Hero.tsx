@@ -1,4 +1,4 @@
-import { AppBar, Avatar, Box, Grid, Link, Paper, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Avatar, Box, Grid, Link, Paper, Toolbar, Typography, useMediaQuery } from '@material-ui/core';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Background1 from 'src/assets/img/background1.svg';
@@ -260,6 +260,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   navPriceText: {
     marginTop: 28,
+    [theme.breakpoints.down('md')]: {
+      marginTop: 0,
+      lineHeight: '30px'
+    }
   },
   navbarButton: {
     padding: '8px 39px',
@@ -298,6 +302,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& img': {
       width: '100%'
     }
+  },
+  minWidth120: {
+    minWidth: 120
   }
 }));
 
@@ -318,7 +325,7 @@ const Hero = () => {
   const [showHeroOriginal, setShowHeroOriginal] = useState(true);
   let thisRef = createRef<HTMLDivElement>();
   const theme = useTheme();
-  console.log(theme.breakpoints.up('sm'));
+  const mediaMatches = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -470,19 +477,19 @@ const Hero = () => {
       </div>
       <AppBar className={clsx(classes.appBar, showHeroOriginal ? 'hidden' : '', classes.mobileHidden)} position='fixed'>
         <Toolbar className={clsx(classes.toolBar, 'container')}>
-          <Box width={1} display='flex' flexDirection='row' justifyContent='space-between' gridGap={34}>
-            <Box flexBasis={380}>
+          <Box width={1} display='flex' flexDirection='row' justifyContent='space-between' gridGap={mediaMatches ? 5 : 34}>
+            <Box width={380}>
               <Typography variant='h5'>NFT title goes here and also on this extremely long second line</Typography>
             </Box>
             <Box flexGrow='1'></Box>
             <Box className={classes.navPriceText}>
               Reserve price <b>10,000 PRT</b> or <b>6.626 ETH</b>
             </Box>
-            <Box flexBasis={332} display='flex' justifyContent='space-between' alignItems='center'>
+            <Box width={332} display='flex' justifyContent='space-between' alignItems='center'>
               <PortionButton color='secondary' className={classes.navbarButton}>
                 Buy
               </PortionButton>
-              <PortionButton color='secondary' outline={true} className={classes.navbarButton}>
+              <PortionButton color='secondary' outline={true} className={clsx(classes.navbarButton, classes.minWidth120)}>
                 Make an Offer
               </PortionButton>
             </Box>

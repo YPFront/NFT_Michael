@@ -1,7 +1,6 @@
 import { Avatar, Box, Link, Paper, Typography } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -76,6 +75,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       display: 'none',
     }
   },
+  tabletHidden: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    }
+  },
   paper: {
     [theme.breakpoints.down('sm')]: {
       marginLeft: -25,
@@ -141,7 +145,7 @@ const CreatorSection = () => {
           <Box>
             <b>More from Ron</b>
             <Box className={classes.carousel} mt={1} mb={3}>
-              <Slider dots={false} slidesToShow={3} slidesToScroll={1} swipe={true} ref={(slider) => (sliderRef = slider)} variableWidth={true}>
+              <Slider dots={false} slidesToShow={2} slidesToScroll={1} swipe={true} ref={(slider) => (sliderRef = slider)} variableWidth={true}>
                 {moreCharacters.map((item, i) => (
                   <Link href={item.link} key={i}>
                     <img src={item.src} />
@@ -156,7 +160,7 @@ const CreatorSection = () => {
                   See all of Matteo’s creations{' '}
                 </PortionButton>
               </Box>
-              <Box className={classes.mobileHidden}>
+              <Box className={classes.tabletHidden}>
                 <PortionButton
                   className={classes.roundButton}
                   color='primary'
@@ -170,7 +174,7 @@ const CreatorSection = () => {
                   &lt;{' '}
                 </PortionButton>
               </Box>
-              <Box className={classes.mobileHidden}>
+              <Box className={classes.tabletHidden}>
                 <PortionButton
                   className={classes.roundButton}
                   color='primary'

@@ -61,7 +61,10 @@ export const theme = createTheme({
         fontFamily: 'Lato',
         fontWeight: 'bold',
         fontSize: 24,
-        lineHeight: '28.8px'
+        lineHeight: '28.8px',
+        [`@media (max-width:${media.lg}px)`]: {
+          fontSize: 20
+        },
       },
       button: {
         padding: '6px 22px',
