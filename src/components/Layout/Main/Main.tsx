@@ -1,12 +1,13 @@
-import { Box, Grid, Typography } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Divider from '../../Divider';
 import ActivitySection from './Activity';
 import CreatorSection from './Creator';
 import DescriptionSection from './Description';
-import PGoldMark from 'src/assets/img/PGoldenMark.svg'
 import RelatedSection from './Related';
+import PGoldMark from 'src/assets/lottie/pMark.json';
+import LottieImage from 'src/components/LottieImage';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -48,7 +49,8 @@ const Main = (props: any) => {
         </Grid>
         <Grid item md={1} xs={12} className={classes.tabletHidden}>
           <Box width={1} textAlign='center'>
-            <img src={PGoldMark}/>
+            <LottieImage src={PGoldMark} width={90} height={100}></LottieImage>
+            
           </Box>
         </Grid>
         <Grid item md={6} xs={12}>

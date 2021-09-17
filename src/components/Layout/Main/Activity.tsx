@@ -3,7 +3,8 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import ActivityList from 'src/components/ActivityList';
 import { ActivityType } from 'src/components/ActivityList/ActivityType';
 import Background1 from 'src/assets/img/background2.svg'
-import Background2 from 'src/assets/img/background3.svg'
+import GeoShape from 'src/assets/lottie/geoShape.json';
+import LottieImage from 'src/components/LottieImage';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -78,7 +79,7 @@ const ActivitySection = () => {
       <img src={Background1} className={classes.background1}/>
       <Typography variant="h4"> Activity </Typography>
       <ActivityList data={data}></ActivityList>
-      <img src={Background2} className={classes.background2}/>
+      <LottieImage src={GeoShape} width={396} height={379}/>
     </div>
   );
 };

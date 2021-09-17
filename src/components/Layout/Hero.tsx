@@ -1,22 +1,24 @@
-import { AppBar, Avatar, Box, Grid, Link, Paper, Toolbar, Typography, useMediaQuery } from '@material-ui/core';
+import { AppBar, Avatar, Box, Grid, Paper, Toolbar, Typography, useMediaQuery } from '@material-ui/core';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Background1 from 'src/assets/img/background1.svg';
-import Character from 'src/assets/img/character.svg';
+import { createRef, useEffect, useState } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
 import AvatarImg from 'src/assets/img/avatar.svg';
+import Character from 'src/assets/img/character.svg';
 import CheckBadge from 'src/assets/img/checkBadge.svg';
-import PWhiteMark from 'src/assets/img/PWhiteMark.svg';
 import Etherum from 'src/assets/img/etherum.svg';
+import Expand from 'src/assets/img/expand.svg';
 import Eye from 'src/assets/img/eye.svg';
 import Facebook from 'src/assets/img/facebook.svg';
-import Twitter from 'src/assets/img/twitter.svg';
-import Telegram from 'src/assets/img/telegram.svg';
 import LinkImg from 'src/assets/img/link.svg';
-import ArrowDown from 'src/assets/img/arrow_down.svg';
-import Expand from 'src/assets/img/expand.svg';
+import PWhiteMark from 'src/assets/img/PWhiteMark.svg';
+import Telegram from 'src/assets/img/telegram.svg';
+import Twitter from 'src/assets/img/twitter.svg';
+import ArrowDown from 'src/assets/lottie/arrow_down.json';
+import Bubbles from 'src/assets/lottie/bubbles.json';
+import Octopus from 'src/assets/lottie/octopus.json';
+import LottieImage from '../LottieImage';
 import PortionButton from '../PortionButton';
-import { Link as ScrollLink } from 'react-scroll';
-import { createRef, useEffect, useRef, useState } from 'react';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -26,11 +28,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: 'relative',
     color: theme.palette.common.white,
     [theme.breakpoints.down('lg')]: {
-      minHeight: 'unset'
+      minHeight: 'unset',
     },
     [theme.breakpoints.down('sm')]: {
       paddingBottom: 25,
-    }
+    },
   },
   main: {
     marginTop: 100,
@@ -39,18 +41,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     '&>.MuiGrid-item': {
       paddingTop: 0,
       [theme.breakpoints.down('md')]: {
-        padding: 25
-      }
-    }    
+        padding: 25,
+      },
+    },
   },
   background1: {
     width: 936,
     position: 'absolute',
     top: '30%',
-    left: '-2%',
-    '& img': {
-      width: '100%',
-    },
+    left: '-4%'
   },
   characterContainer: {
     display: 'flex',
@@ -59,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: 15,
     marginBottom: 15,
     '&.MuiGrid-item': {
-      paddingBottom: 0
+      paddingBottom: 0,
     },
     '& .MuiPaper-root': {
       padding: 10,
@@ -73,14 +72,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& img': {
       width: '100%',
       maxHeight: 800,
-    }
+    },
   },
   detailPanel: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     '&.MuiGrid-item': {
-      paddingBottom: 0
+      paddingBottom: 0,
     },
     '& b': {
       color: theme.palette.secondary.main,
@@ -97,7 +96,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginBlockEnd: 3,
     },
     [theme.breakpoints.up('lg')]: {
-      marginBottom: 64
+      marginBottom: 64,
     },
     [theme.breakpoints.down('sm')]: {
       display: 'block',
@@ -105,9 +104,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginTop: 0,
       marginBottom: 10,
       '& > .MuiGrid-root': {
-        marginBottom: 15
-      }
-    }
+        marginBottom: 15,
+      },
+    },
   },
   avatar: {
     border: '2px solid',
@@ -125,14 +124,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: '43.2px',
     marginLeft: 10,
     [theme.breakpoints.down('md')]: {
-      fontSize: 28
-    }
+      fontSize: 28,
+    },
   },
   prtIcon: {
-    marginBottom: -6
+    marginBottom: -6,
   },
   ethicon: {
-    marginBottom: -2
+    marginBottom: -2,
   },
   listPrice: {
     '& .MuiGrid-item': {
@@ -140,7 +139,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       alignItems: 'center',
     },
     '& .price-label': {
-      width: '100%'
+      width: '100%',
     },
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
@@ -152,10 +151,10 @@ const useStyles = makeStyles((theme: Theme) => ({
         flexDirection: 'column',
         '& p': {
           marginTop: 2,
-          marginBottom: 2
-        }
-      }
-    },    
+          marginBottom: 2,
+        },
+      },
+    },
   },
   action: {
     marginTop: 20,
@@ -166,14 +165,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: 20,
     },
     [theme.breakpoints.down('sm')]: {
-      order: 2
-    }
+      order: 2,
+    },
   },
   attributes: {
     [theme.breakpoints.down('sm')]: {
       order: 4,
-      marginBottom: 25
-    }
+      marginBottom: 25,
+    },
   },
   smallButton: {
     fontSize: 20,
@@ -188,8 +187,8 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: '6px 10px',
       fontSize: 16,
       lineHeight: '19px',
-      fontWeight: 'normal'
-    }
+      fontWeight: 'normal',
+    },
   },
   roundButton: {
     borderRadius: '50%',
@@ -201,69 +200,41 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: '7px',
       '& img': {
         width: 15,
-        height: 15
-      }
-    }
+        height: 15,
+      },
+    },
   },
   moveDown: {
     width: '100%',
     height: 33,
-    marginTop: -35,
-    marginBottom: 35,
+    marginTop: -40,
+    marginBottom: 40,
     '& a': {
       position: 'absolute',
       zIndex: 1,
       background: '#0D455C',
       borderRadius: '50%',
-      padding: '9px 15px',
-      left: 'calc(25% - 40px)'
+      padding: '9px 9px',
+      left: 'calc(25% - 40px)',
     },
     [theme.breakpoints.down('sm')]: {
       height: 28,
-      marginTop: -30,
-      marginBottom: 30,      
+      marginTop: -45,
+      marginBottom: 45,
       '& a': {
-        padding: '5px 15px',
+        padding: '10px 15px',
         left: 'calc(50% - 45px)',
         '& img': {
-          height: 40
-        }
-      }
-    }
+          height: 40,
+        },
+      },
+    },
   },
-  circle: {
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: theme.palette.secondary.main,
-    borderRadius: '50%',
-    opacity: 0.5,
-  },
-  circle1: {
-    width: '156px',
-    height: '156px',
+  bubbles: {
     position: 'absolute',
-    top: '117px',
-    right: '-57px',
-    borderRadius: '50%',
-    opacity: 0.5,
-  },
-  circle2: {
-    width: '104px',
-    height: '104px',
-    position: 'absolute',
-    top: '218px',
-    right: '31px',
-    borderRadius: '50%',
-    opacity: 0.5,
-  },
-  circle3: {
-    width: '240px',
-    height: '240px',
-    position: 'absolute',
-    top: '193px',
-    right: '-176px',
-    borderRadius: '50%',
-    opacity: 0.5,
+    top: 117,
+    right: -176,
+    opacity: 0.5
   },
   appBar: {
     background: 'linear-gradient(180deg, #042A3D 0%, #0C445B 78%)',
@@ -285,8 +256,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   navPriceText: {
     [theme.breakpoints.down('md')]: {
       marginTop: 0,
-      lineHeight: '30px'
-    }
+      lineHeight: '30px',
+    },
   },
   navbarButton: {
     padding: '8px 39px',
@@ -294,41 +265,41 @@ const useStyles = makeStyles((theme: Theme) => ({
   mobileHidden: {
     [theme.breakpoints.down('sm')]: {
       display: 'none',
-    }
+    },
   },
   mobileShow: {
     display: 'none',
     [theme.breakpoints.down('sm')]: {
       display: 'inherit',
-    }
+    },
   },
   tabletHidden: {
     [theme.breakpoints.down('md')]: {
       display: 'none',
-    }
+    },
   },
   mobileCenter: {
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
-    }
+    },
   },
   mobileLeft: {
     [theme.breakpoints.down('sm')]: {
       textAlign: 'left',
-    }
+    },
   },
   mobileCharacter: {
     '& .MuiPaper-root': {
       width: '100%',
-      padding: 5
+      padding: 5,
     },
     '& img': {
-      width: '100%'
-    }
+      width: '100%',
+    },
   },
   minWidth120: {
-    minWidth: 120
-  }
+    minWidth: 120,
+  },
 }));
 
 const getDimensions = (ele: HTMLDivElement) => {
@@ -377,11 +348,11 @@ const Hero = () => {
     <div ref={thisRef}>
       <div className={clsx(classes.root, 'container')}>
         <div className={classes.background1}>
-          <img src={Background1} />
+          <LottieImage width={936} height={489} src={Octopus}/>
         </div>
-        <div className={clsx(classes.circle, classes.circle1)}></div>
-        <div className={clsx(classes.circle, classes.circle2)}></div>
-        <div className={clsx(classes.circle, classes.circle3)}></div>
+        <div className={classes.bubbles}>
+          <LottieImage width={300} height={300} src={Bubbles}/>
+        </div>
 
         <Grid container className={classes.main} spacing={10}>
           <Grid item md={6} xs={12} className={clsx(classes.characterContainer, classes.mobileHidden)}>
@@ -392,7 +363,7 @@ const Hero = () => {
 
           <Grid item md={6} xs={12} className={classes.detailPanel}>
             <Grid container>
-              <Grid item lg={10} xs={12} >
+              <Grid item lg={10} xs={12}>
                 <Typography variant='h3'>NFT title goes here and also on this second line</Typography>
                 <p>
                   Part of the <b>Batman White Knight Presents</b> Collection
@@ -414,7 +385,12 @@ const Hero = () => {
                     <p>Created by: </p>
                   </Grid>
                   <Grid item xs={4} md={12}>
-                    <p><b> Ron English <img src={CheckBadge} /></b></p>
+                    <p>
+                      <b>
+                        {' '}
+                        Ron English <img src={CheckBadge} />
+                      </b>
+                    </p>
                   </Grid>
                   <Grid item xs={12} md={12}>
                     <p>on March 16, 2021:</p>
@@ -438,23 +414,23 @@ const Hero = () => {
               <Box className='price-label'>
                 <p>Listing Price</p>
               </Box>
-              <Box display='flex' justifyContent="stretch" alignItems="center" className='price-list'>
+              <Box display='flex' justifyContent='stretch' alignItems='center' className='price-list'>
                 <Box>
-                  <img src={PWhiteMark} className={classes.prtIcon}/>
+                  <img src={PWhiteMark} className={classes.prtIcon} />
                   <span className={classes.priceText}>10,000 PRT</span>
                 </Box>
                 <Box maxWidth={20} mx={2}>
                   <p>or</p>
                 </Box>
                 <Box>
-                  <img src={Etherum} className={classes.ethicon}/>
+                  <img src={Etherum} className={classes.ethicon} />
                   <span className={classes.priceText}>6.626 ETH</span>
                 </Box>
               </Box>
             </Box>
             <Grid container className={classes.action} spacing={3}>
               <Grid item xs={12} md={6}>
-                <PortionButton color='secondary'>Buy</PortionButton>
+                <PortionButton color='secondary' animation={true}>Buy</PortionButton>
               </Grid>
               <Grid item xs={12} md={6}>
                 <PortionButton color='secondary' outline={true}>
@@ -496,7 +472,7 @@ const Hero = () => {
       </div>
       <div className={classes.moveDown}>
         <ScrollLink href='#' activeClass='active' to='Main-Page' spy={true} smooth={true} hashSpy={true} offset={50} duration={500} delay={0} isDynamic={true} ignoreCancelEvents={false}>
-          <img src={ArrowDown} />
+          <LottieImage src={ArrowDown} width={60} height={60}/>
         </ScrollLink>
       </div>
       <AppBar className={clsx(classes.appBar, showHeroOriginal ? 'hidden' : '', classes.mobileHidden)} position='fixed'>
@@ -510,7 +486,7 @@ const Hero = () => {
               Reserve price <b>10,000 PRT</b> or <b>6.626 ETH</b>
             </Box>
             <Box width={332} display='flex' justifyContent='space-between' alignItems='center'>
-              <PortionButton color='secondary' className={classes.navbarButton}>
+              <PortionButton color='secondary' className={classes.navbarButton} animation={true}>
                 Buy
               </PortionButton>
               <PortionButton color='secondary' outline={true} className={clsx(classes.navbarButton, classes.minWidth120)}>

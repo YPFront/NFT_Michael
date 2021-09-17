@@ -1,5 +1,8 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import Diamond from 'src/assets/img/diamond.svg';
+import DiamondLeft from 'src/assets/img/diamond_left.svg';
+import DiamondRight from 'src/assets/img/diamond_right.svg';
+import Diamond from 'src/assets/lottie/diamond.json';
+import LottieImage from '../LottieImage';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -13,6 +16,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderBottom: '1px solid ' + theme.palette.secondary.main,
     marginBottom: 23,
     width: '50%'
+  },
+  diamond: {
+    marginLeft: 5,
+    marginRight: 5
   }
 }));
 
@@ -25,7 +32,11 @@ const Divider = (props: Props) => {
   return (
     <div className={classes.root}>
       <div className={classes.line}></div>
-      <img src={Diamond}/>
+      <img src={DiamondLeft} />
+      <div className={classes.diamond}>
+        <LottieImage src={Diamond} width={26} height={46}/>
+      </div>
+      <img src={DiamondRight} />
       <div className={classes.line}></div>
     </div>
   );
