@@ -5,14 +5,18 @@ import clsx from 'clsx';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     background: theme.palette.primary.dark,
-    paddingTop: 24,
-    paddingBottom: 24,
+    paddingTop: 16,
+    paddingBottom: 16,
     '& a': {
       color: theme.palette.common.white,
       marginRight: 30,
       '&:last-child': {
         marginLeft: 0,
       },
+    },
+    '& MuiGrid-item': {
+      paddingTop: 8,
+      paddingBottom: 8
     },
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',

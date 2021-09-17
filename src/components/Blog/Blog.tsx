@@ -5,6 +5,7 @@ import { BlogType } from './BlogType';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
+    background: theme.palette.common.white
   },
   avatar: {
     border: '2px solid',
@@ -30,7 +31,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   hidden: {
-    visibility: 'hidden'
+    visibility: 'hidden',
+    height: 25
   }
 }));
 
@@ -48,7 +50,7 @@ const Blog = (props: Props) => {
     <Link href="#" className={clsx(classes.link, className)}>
       <Box width={1} display='flex' flexDirection='column' justifyContent='space-around' gridGap={16} className={classes.root}>
         <img src={data.src}/>
-        <Box px={2.5} display='flex' flexDirection='column' justifyContent='space-around' gridGap={3}>
+        <Box px={2.5} pb={2.5} display='flex' flexDirection='column' justifyContent='space-around' gridGap={3}>
           <Box>
             <b>{data.title}</b>
           </Box>

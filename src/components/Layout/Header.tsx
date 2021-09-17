@@ -125,7 +125,7 @@ const Header = () => {
     <AppBar className={classes.appBar} position='absolute'>
       {mediaMatches == false ? (
         <Toolbar className={clsx(classes.toolBar, 'container')}>
-          <Box width={1} display='flex' flexDirection='row' justifyContent='space-between'>
+          <Box width={1} display='flex' flexDirection='row' justifyContent='space-between' alignItems='center'>
             <Link href='#'>
               <img src={Logo} />
             </Link>

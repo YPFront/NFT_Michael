@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexWrap: 'wrap',
     marginTop: 30,
     marginBottom: 30,
+    padding: 1,
     gap: 8
   },
   toggleButton: {

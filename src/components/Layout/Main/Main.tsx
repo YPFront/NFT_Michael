@@ -21,6 +21,16 @@ const useStyles = makeStyles((theme: Theme) => ({
       display: 'none',
     }
   },
+  tabletHidden: {
+    ['@media (max-width: 1024px)']: {
+      display: 'none'
+    }
+  },
+  description: {
+    ['@media (min-width: 992px) and (max-width: 1024px)']: {
+      maxWidth: '50%'
+    }
+  }
 }));
 
 const Main = (props: any) => {
@@ -29,14 +39,14 @@ const Main = (props: any) => {
   return (
     <div className={clsx(classes.root, 'container')} id="Main-Page">
       <Grid container spacing={10}>
-        <Grid item md={5}  xs={12}>
+        <Grid item md={5} xs={12} className={classes.description}>
           <DescriptionSection></DescriptionSection>
 
           <Divider></Divider>
 
           <CreatorSection></CreatorSection>
         </Grid>
-        <Grid item md={1} xs={12} className={classes.mobileHidden}>
+        <Grid item md={1} xs={12} className={classes.tabletHidden}>
           <Box width={1} textAlign='center'>
             <img src={PGoldMark}/>
           </Box>

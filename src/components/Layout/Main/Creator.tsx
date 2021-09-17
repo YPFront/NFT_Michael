@@ -9,6 +9,7 @@ import character1 from 'src/assets/img/character1.svg';
 import character2 from 'src/assets/img/character2.svg';
 import CreatorBack from 'src/assets/img/creatorBack.svg';
 import { ReactComponent as Eye } from 'src/assets/img/eye.svg';
+import CheckBadge from 'src/assets/img/checkBadge.svg';
 import PortionButton from 'src/components/PortionButton';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -65,6 +66,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 'calc(100% + 40px)',
     height: 230,
     overflow: 'hidden',
+    '& a': {
+      outline: 'none'
+    },
     '& img': {
       width: 200,
       marginRight: 10,
@@ -82,6 +86,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   paper: {
     [theme.breakpoints.down('sm')]: {
+      marginLeft: -64,
+      width: 'calc(100% + 128px)',
+      boxShadow: 'none'
+    },
+    [theme.breakpoints.down('xs')]: {
       marginLeft: -25,
       width: 'calc(100% + 50px)',
       boxShadow: 'none'
@@ -132,7 +141,7 @@ const CreatorSection = () => {
         <Box px={5} pb={4}>
           <Box pb={4}>
             <p>
-              <b>Ron English</b> <Link href='#'>@ronenglish</Link>
+              <b>Ron English</b> <Link href='#'>@ronenglish</Link> <img src={CheckBadge} />
             </p>
             <p>Italian ComicBook artist working for Image, DC, Marvel, Netflix, Boom!studios.</p>
             <Box>
@@ -145,7 +154,7 @@ const CreatorSection = () => {
           <Box>
             <b>More from Ron</b>
             <Box className={classes.carousel} mt={1} mb={3}>
-              <Slider dots={false} slidesToShow={2} slidesToScroll={1} swipe={true} ref={(slider) => (sliderRef = slider)} variableWidth={true}>
+              <Slider dots={false} rows={1} slidesToShow={2} touchMove={true} swipeToSlide={false} swipe={true} ref={(slider) => (sliderRef = slider)} variableWidth={true} waitForAnimate={false}>
                 {moreCharacters.map((item, i) => (
                   <Link href={item.link} key={i}>
                     <img src={item.src} />

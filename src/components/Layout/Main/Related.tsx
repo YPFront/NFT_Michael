@@ -14,12 +14,13 @@ import { BlogType } from 'src/components/Blog/BlogType';
 const useStyles = makeStyles((theme: Theme) => ({
   blogContainer: {
     marginTop: 26,
-    marginBottom: 80,
+    marginBottom: 40,
   },
   carousel: {
     width: 'calc(100% + 40px)',
-    height: 315,
+    height: 365,
     overflow: 'hidden',
+    marginTop: 15,
   },
   blog: {
     width: 220,
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const RelatedSection = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const mediaMatches = useMediaQuery(theme.breakpoints.down('md'));
+  const mediaMatches = useMediaQuery(theme.breakpoints.down('sm'));
   const data: BlogType[] = [
     {
       src: Blog1,
@@ -70,7 +71,7 @@ const RelatedSection = () => {
 
   return (
     <div>
-      <Typography variant='h4'>Related</Typography>
+      <Typography variant='h4'>Related Items</Typography>
       {!mediaMatches ? (
         <Grid container spacing={4} justifyContent='center' className={classes.blogContainer}>
           <Grid item md={3}>

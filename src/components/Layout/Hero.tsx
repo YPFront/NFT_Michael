@@ -27,12 +27,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.common.white,
     [theme.breakpoints.down('lg')]: {
       minHeight: 'unset'
+    },
+    [theme.breakpoints.down('sm')]: {
+      paddingBottom: 25,
     }
   },
   main: {
     marginTop: 100,
     marginBottom: 0,
-    paddingTop: 23,
     position: 'relative',
     '&>.MuiGrid-item': {
       paddingTop: 0,
@@ -56,6 +58,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center',
     marginTop: 15,
     marginBottom: 15,
+    '&.MuiGrid-item': {
+      paddingBottom: 0
+    },
     '& .MuiPaper-root': {
       padding: 10,
       width: '100%',
@@ -74,6 +79,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    '&.MuiGrid-item': {
+      paddingBottom: 0
+    },
     '& b': {
       color: theme.palette.secondary.main,
       fontWeight: 'normal',
@@ -117,17 +125,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: '43.2px',
     marginLeft: 10,
     [theme.breakpoints.down('md')]: {
-      fontSize: 28,
-      lineHeight: '34px'
+      fontSize: 28
     }
+  },
+  prtIcon: {
+    marginBottom: -6
+  },
+  ethicon: {
+    marginBottom: -2
   },
   listPrice: {
     '& .MuiGrid-item': {
       display: 'flex',
       alignItems: 'center',
-    },
-    '& p': {
-      marginBottom: 5,
     },
     '& .price-label': {
       width: '100%'
@@ -137,10 +147,15 @@ const useStyles = makeStyles((theme: Theme) => ({
       alignItems: 'center',
       order: 1,
       marginTop: 20,
-      '& .price-label': {
-        width: 'fit-content'
+      textAlign: 'center',
+      '& .price-list': {
+        flexDirection: 'column',
+        '& p': {
+          marginTop: 2,
+          marginBottom: 2
+        }
       }
-    }
+    },    
   },
   action: {
     marginTop: 20,
@@ -201,11 +216,20 @@ const useStyles = makeStyles((theme: Theme) => ({
       background: '#0D455C',
       borderRadius: '50%',
       padding: '9px 15px',
-      left: 'calc(25% - 40px)',
-      [theme.breakpoints.down('sm')]: {
-        left: 'calc(50% - 45px)'
-      }
+      left: 'calc(25% - 40px)'
     },
+    [theme.breakpoints.down('sm')]: {
+      height: 28,
+      marginTop: -30,
+      marginBottom: 30,      
+      '& a': {
+        padding: '5px 15px',
+        left: 'calc(50% - 45px)',
+        '& img': {
+          height: 40
+        }
+      }
+    }
   },
   circle: {
     borderWidth: 1,
@@ -259,7 +283,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     minHeight: 'unset',
   },
   navPriceText: {
-    marginTop: 28,
     [theme.breakpoints.down('md')]: {
       marginTop: 0,
       lineHeight: '30px'
@@ -411,23 +434,24 @@ const Hero = () => {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid container className={classes.listPrice} justifyContent="space-around">
+            <Box className={classes.listPrice}>
               <Box className='price-label'>
                 <p>Listing Price</p>
               </Box>
-              <Box>
-                <img src={PWhiteMark} />
-                <span className={classes.priceText}>10,000 PRT</span>
+              <Box display='flex' justifyContent="stretch" alignItems="center" className='price-list'>
+                <Box>
+                  <img src={PWhiteMark} className={classes.prtIcon}/>
+                  <span className={classes.priceText}>10,000 PRT</span>
+                </Box>
+                <Box maxWidth={20} mx={2}>
+                  <p>or</p>
+                </Box>
+                <Box>
+                  <img src={Etherum} className={classes.ethicon}/>
+                  <span className={classes.priceText}>6.626 ETH</span>
+                </Box>
               </Box>
-              <Box mx={1}>
-                <p>or</p>
-              </Box>
-              <Box>
-                <img src={Etherum} />
-                <span className={classes.priceText}>6.626 ETH</span>
-              </Box>
-              <Box flexGrow={1}></Box>
-            </Grid>
+            </Box>
             <Grid container className={classes.action} spacing={3}>
               <Grid item xs={12} md={6}>
                 <PortionButton color='secondary'>Buy</PortionButton>
@@ -477,7 +501,7 @@ const Hero = () => {
       </div>
       <AppBar className={clsx(classes.appBar, showHeroOriginal ? 'hidden' : '', classes.mobileHidden)} position='fixed'>
         <Toolbar className={clsx(classes.toolBar, 'container')}>
-          <Box width={1} display='flex' flexDirection='row' justifyContent='space-between' gridGap={mediaMatches ? 5 : 34}>
+          <Box width={1} display='flex' flexDirection='row' alignItems='center' justifyContent='space-between' gridGap={mediaMatches ? 5 : 34}>
             <Box width={380}>
               <Typography variant='h5'>NFT title goes here and also on this extremely long second line</Typography>
             </Box>
