@@ -55,14 +55,14 @@ const useStyles = makeStyles((theme: Theme) =>
     ButtonEffectLR: {
       position: 'absolute',
       opacity: 0.8,
-      top: '-33%',
+      top: '-13px',
       left: 0,
       width: '70%'
     },
     ButtonEffectRL: {
       position: 'absolute',
       opacity: 0.8,
-      bottom: '-20%',
+      bottom: '-3px',
       right: 0,
       width: '70%'
     },
@@ -94,13 +94,13 @@ export default function PortionButton(props: any) {
   ) : (
     <div  className={classes.ButtonEffectRoot}>
       <div className={classes.ButtonEffectLR}>
-        <LottieImage width='100%' src={B_effect_lr}/>
+        <LottieImage width='100%' height='11px' src={B_effect_lr}/>
       </div>
       <Button variant={outline ? 'outlined' : 'contained'} size={size ? size : 'medium'} color={color} className={clsx(classes.button, radius == 'hard' ? classes.buttonRadiusHard : classes.buttonRadiusNormal, className)} {...other}>
         {children}
       </Button>
       <div className={classes.ButtonEffectRL}>
-        <LottieImage width='100%' src={B_effect_rl}/>
+        <LottieImage width='100%' height='11px' src={B_effect_rl}/>
       </div>
     </div>
   );

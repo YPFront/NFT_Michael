@@ -1,11 +1,9 @@
+import {
+  BrowserRouter as Router, Route, Switch
+} from "react-router-dom";
 import './App.css';
 import Page1A from './pages/page1a';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import Page1B from './pages/page1b';
 
 function App() {
   return (
@@ -14,6 +12,9 @@ function App() {
         <Switch>
           <Route path="/page1">
             <Page1A></Page1A>
+          </Route>
+          <Route path="/page2">
+            <Page1B></Page1B>
           </Route>
           <Route path="/">
             <Page1A></Page1A>

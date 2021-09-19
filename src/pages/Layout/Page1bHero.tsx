@@ -14,11 +14,13 @@ import LinkImg from 'src/assets/img/link.svg';
 import PWhiteMark from 'src/assets/img/PWhiteMark.svg';
 import Telegram from 'src/assets/img/telegram.svg';
 import Twitter from 'src/assets/img/twitter.svg';
+import Live from 'src/assets/img/live.svg';
 import ArrowDown from 'src/assets/lottie/arrow_down.json';
 import Bubbles from 'src/assets/lottie/bubbles.json';
 import Octopus from 'src/assets/lottie/octopus.json';
 import LottieImage from '../../components/LottieImage';
 import PortionButton from '../../components/PortionButton';
+import SubmitBidForm from 'src/components/SubmitBidForm';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -122,7 +124,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 700,
     fontSize: 36,
     lineHeight: '43.2px',
-    marginLeft: 10,
     [theme.breakpoints.down('md')]: {
       fontSize: 28,
     },
@@ -133,27 +134,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   ethicon: {
     marginBottom: -2,
   },
-  listPrice: {
-    '& .MuiGrid-item': {
-      display: 'flex',
-      alignItems: 'center',
-    },
-    '& .price-label': {
-      width: '100%',
+  highestBid: {
+    '& p': {
+      marginBottom: 6,
+      marginTop: 6
     },
     [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column',
-      alignItems: 'center',
-      order: 1,
-      marginTop: 20,
       textAlign: 'center',
-      '& .price-list': {
-        flexDirection: 'column',
-        '& p': {
-          marginTop: 2,
-          marginBottom: 2,
-        },
-      },
+      marginTop: 20
     },
   },
   action: {
@@ -262,6 +250,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   navbarButton: {
     padding: '8px 39px',
   },
+  live: {
+    color: '#3EC293',
+    marginBottom: 8,
+    '& img': {
+      marginRight: 5,
+      marginTop: -4,
+      verticalAlign: 'middle'
+    }
+  },
   mobileHidden: {
     [theme.breakpoints.down('sm')]: {
       display: 'none',
@@ -364,6 +361,7 @@ const Hero = () => {
           <Grid item md={6} xs={12} className={classes.detailPanel}>
             <Grid container>
               <Grid item lg={10} xs={12}>
+                <p className={classes.live}><img src={Live}/> WE'RE LIVE</p>
                 <Typography variant='h3'>NFT title goes here and also on this second line</Typography>
                 <p>
                   Part of the <b>Batman White Knight Presents</b> Collection
@@ -410,34 +408,32 @@ const Hero = () => {
                 </Grid>
               </Grid>
             </Grid>
-            <Box className={classes.listPrice}>
-              <Box className='price-label'>
-                <p>Listing Price</p>
-              </Box>
-              <Box display='flex' justifyContent='stretch' alignItems='center' className='price-list'>
-                <Box>
-                  <img src={PWhiteMark} className={classes.prtIcon} />
-                  <span className={classes.priceText}>10,000 PRT</span>
-                </Box>
-                <Box maxWidth={20} mx={2}>
-                  <p>or</p>
-                </Box>
-                <Box>
-                  <img src={Etherum} className={classes.ethicon} />
-                  <span className={classes.priceText}>6.626 ETH</span>
-                </Box>
-              </Box>
-            </Box>
-            <Grid container className={classes.action} spacing={3}>
-              <Grid item xs={12} md={6}>
-                <PortionButton color='secondary' animation={true}>Buy</PortionButton>
+            <Grid container className={classes.highestBid} spacing={5}>
+              <Grid item md={6} xs={12}>
+                <p>Highest bid</p>
+                <p className={classes.priceText}>18.333 ETH</p>
+                <p>by <b>salva</b></p>
+                <small>highest bid must stand for 15 mins before acceptance</small>
               </Grid>
-              <Grid item xs={12} md={6}>
-                <PortionButton color='secondary' outline={true}>
-                  Make an Offer
-                </PortionButton>
+              <Grid item md={6} xs={12}>
+                <p> Auction ending in </p>
+                <Grid container>
+                  <Grid item md={3} xs={4}>
+                    <p className={classes.priceText}>3</p>
+                    <p>Hours</p>
+                  </Grid>
+                  <Grid item md={4} xs={4}>
+                    <p className={classes.priceText}>18</p>
+                    <p>Minutes</p>
+                  </Grid>
+                  <Grid item md={4} xs={4}>
+                    <p className={classes.priceText}>28</p>
+                    <p>Seconds</p>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
+            <SubmitBidForm></SubmitBidForm>
             <Box className={classes.attributes} display='flex' justifyContent='space-between'>
               <Box>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.smallButton}>
@@ -478,19 +474,16 @@ const Hero = () => {
       <AppBar className={clsx(classes.appBar, showHeroOriginal ? 'hidden' : '', classes.mobileHidden)} position='fixed'>
         <Toolbar className={clsx(classes.toolBar, 'container')}>
           <Box width={1} display='flex' flexDirection='row' alignItems='center' justifyContent='space-between' gridGap={mediaMatches ? 5 : 34}>
-            <Box width={380}>
-              <Typography variant='h5'>NFT title goes here and also on this extremely long second line</Typography>
+            <Box width={380}>              
+              <Typography variant='h5'> NFT title goes here and also on this extremely long second line</Typography>
             </Box>
             <Box flexGrow='1'></Box>
             <Box className={classes.navPriceText}>
-              Reserve price <b>10,000 PRT</b> or <b>6.626 ETH</b>
+              Bid must be 100th of an ETH higher than <b>18.333 ETH</b>
             </Box>
-            <Box width={332} display='flex' justifyContent='space-between' alignItems='center'>
+            <Box minWidth={165} display='flex' justifyContent='space-between' alignItems='center'>
               <PortionButton color='secondary' className={classes.navbarButton} animation={true}>
-                Buy
-              </PortionButton>
-              <PortionButton color='secondary' outline={true} className={clsx(classes.navbarButton, classes.minWidth120)}>
-                Make an Offer
+                Place a Bid
               </PortionButton>
             </Box>
           </Box>

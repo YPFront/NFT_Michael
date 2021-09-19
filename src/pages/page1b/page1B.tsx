@@ -41,7 +41,7 @@ export default function Page1B({}: Props) {
   return (
     <ThemeProvider theme={PortionTheme}>
       <div className={classes.root}>
-        <Header />
+        <Header login={true}/>
         <main className={classes.main}>
           <Hero></Hero>
           <Main></Main>

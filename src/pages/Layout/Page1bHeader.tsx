@@ -60,33 +60,37 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   iconButton: {
     background: theme.palette.common.white,
-    padding: '8px 8px',
+    padding: '4px 8px',
     borderRadius: 50,
     display: 'inline-flex',
     position: 'relative',
     '& svg': {
       fill: theme.palette.common.black,
+      width: 25,
+      height: 25
     },
     '& img': {
       borderRadius: '50%',
       border: '2px solid',
       borderColor: theme.palette.secondary.main,
       background: theme.palette.common.white,
+      marginLeft: 10
     },
     '&:hover': {
       background: theme.palette.secondary.main,
     },
   },
   activeProfile: {
-    '&::after': {
+    '& .profile-badge': {
       content: ' ',
-      width: 16,
-      height: 16,
+      width: 12,
+      height: 12,
       display: 'block',
       backgroundColor: '#DA7272',
       position: 'absolute',
-      top: -8,
-      right: -2,
+      borderRadius: '50%',
+      top: -2,
+      right: 0,
     },
   },
   drawerContainer: {
@@ -104,16 +108,17 @@ const useStyles = makeStyles((theme: Theme) => ({
       '&:hover': {
         textDecoration: 'none',
         background: theme.palette.secondary.main,
-        color: theme.palette.common.white
-      }
-    }
+        color: theme.palette.common.white,
+      },
+    },
   },
   '.MuiBackdrop-root': {
-    top: 100
-  }
+    top: 100,
+  },
 }));
 
-const Header = () => {
+const Header = (props: { login?: boolean }) => {
+  const { login } = props;
   const classes = useStyles();
   const theme = useTheme();
   const mediaMatches = useMediaQuery(theme.breakpoints.down('sm'));
@@ -143,9 +148,42 @@ const Header = () => {
                 Create
               </ToggleButton>
             </ToggleButtonGroup>
-            <PortionButton color='inherit' radius='hard'>
-              Connect Wallet
-            </PortionButton>
+            {login == true ? (
+              <div>
+                <IconButton
+                  {...{
+                    edge: 'end',
+                    color: 'inherit',
+                    'aria-label': 'menu',
+                    'aria-haspopup': 'true',
+                    className: clsx(classes.iconButton, classes.activeProfile),
+                    onClick: handleDrawerOpen,
+                  }}
+                >
+                  <MenuIcon />
+                  <img src={Profile_photo} />
+                  <div className="profile-badge"></div>
+                </IconButton>
+                <Drawer
+                {...{
+                  anchor: 'top',
+                  open: drawerOpen,
+                  onClose: handleDrawerClose,
+                }}
+              >
+                <div className={classes.drawerContainer}>
+                  <Link href='#'>Drops</Link>
+                  <Link href='#'>Marketplace</Link>
+                  <Link href='#'>Activity</Link>
+                  <Link href='#'>Create</Link>
+                </div>
+              </Drawer>
+              </div>
+            ) : (
+              <PortionButton color='inherit' radius='hard'>
+                Connect Wallet
+              </PortionButton>
+            )}
           </Box>
         </Toolbar>
       ) : (
@@ -170,22 +208,14 @@ const Header = () => {
             {...{
               anchor: 'top',
               open: drawerOpen,
-              onClose: handleDrawerClose
+              onClose: handleDrawerClose,
             }}
           >
             <div className={classes.drawerContainer}>
-              <Link href="#">
-                Drops
-              </Link>
-              <Link href="#">
-                Marketplace
-              </Link>
-              <Link href="#">
-                Activity
-              </Link>
-              <Link href="#">
-                Create
-              </Link>
+              <Link href='#'>Drops</Link>
+              <Link href='#'>Marketplace</Link>
+              <Link href='#'>Activity</Link>
+              <Link href='#'>Create</Link>
             </div>
           </Drawer>
         </Toolbar>
