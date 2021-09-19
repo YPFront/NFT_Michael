@@ -6,7 +6,7 @@ import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 import clsx from 'clsx';
 import Logo from 'src/assets/img/logo.svg';
 import Profile_photo from 'src/assets/img/profile_photo.svg';
-import PortionButton from '../PortionButton';
+import PortionButton from '../../components/PortionButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useState } from 'react';
 

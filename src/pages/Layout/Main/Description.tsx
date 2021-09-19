@@ -1,8 +1,8 @@
 import { Box, Typography, useMediaQuery } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import Chips from '../../Chips';
-import Readmore from '../../Readmore';
-import SectionCollapse from '../../SectionCollapse';
+import Chips from '../../../components/Chips';
+import Readmore from '../../../components/Readmore';
+import SectionCollapse from '../../../components/SectionCollapse';
 
 const useStyles = makeStyles((theme: Theme) => ({}));
 

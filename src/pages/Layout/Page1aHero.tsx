@@ -17,8 +17,8 @@ import Twitter from 'src/assets/img/twitter.svg';
 import ArrowDown from 'src/assets/lottie/arrow_down.json';
 import Bubbles from 'src/assets/lottie/bubbles.json';
 import Octopus from 'src/assets/lottie/octopus.json';
-import LottieImage from '../LottieImage';
-import PortionButton from '../PortionButton';
+import LottieImage from '../../components/LottieImage';
+import PortionButton from '../../components/PortionButton';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

@@ -1,11 +1,25 @@
-import React from 'react';
 import './App.css';
-import Dashboard from './pages/dashboard';
+import Page1A from './pages/page1a';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Dashboard></Dashboard>
+      <Router>
+        <Switch>
+          <Route path="/page1">
+            <Page1A></Page1A>
+          </Route>
+          <Route path="/">
+            <Page1A></Page1A>
+          </Route>
+        </Switch>
+      </Router>      
     </div>
   );
 }

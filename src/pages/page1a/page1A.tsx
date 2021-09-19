@@ -1,8 +1,8 @@
-import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
-import Footer from 'src/components/Layout/Footer';
-import Header from 'src/components/Layout/Header';
-import Hero from 'src/components/Layout/Hero';
-import Main from 'src/components/Layout/Main/Main';
+import { makeStyles, ThemeProvider } from '@material-ui/core';
+import Footer from 'src/pages/Layout/Footer';
+import Header from 'src/pages/Layout/Page1aHeader';
+import Hero from 'src/pages/Layout/Page1aHero';
+import Main from 'src/pages/Layout/Main/Main';
 import { theme as PortionTheme } from 'src/theme/theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 type Props = {};
 
-export default function Dashboard({}: Props) {
+export default function Page1A({}: Props) {
   const classes = useStyles();
 
   return (

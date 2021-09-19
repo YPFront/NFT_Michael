@@ -1,7 +1,7 @@
 import { Box, Grid } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Divider from '../../Divider';
+import Divider from '../../../components/Divider';
 import ActivitySection from './Activity';
 import CreatorSection from './Creator';
 import DescriptionSection from './Description';
