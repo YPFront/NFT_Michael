@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: 'none',
     height: 100,
   },
+  primaryAppBar: {
+    background: theme.palette.primary.dark
+  },
   buttonGroup: {
     color: theme.palette.common.white,
     minWidth: 570,
@@ -117,8 +120,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Header = (props: { login?: boolean }) => {
-  const { login } = props;
+const Header = (props: { login?: boolean, color?: string }) => {
+  const { login, color } = props;
   const classes = useStyles();
   const theme = useTheme();
   const mediaMatches = useMediaQuery(theme.breakpoints.down('sm'));
@@ -127,7 +130,7 @@ const Header = (props: { login?: boolean }) => {
   const handleDrawerClose = () => setDrawerOpen(false);
 
   return (
-    <AppBar className={classes.appBar} position='absolute'>
+    <AppBar className={clsx(classes.appBar, color == 'primary' ? classes.primaryAppBar : '')} position='absolute'>
       {mediaMatches == false ? (
         <Toolbar className={clsx(classes.toolBar, 'container')}>
           <Box width={1} display='flex' flexDirection='row' justifyContent='space-between' alignItems='center'>

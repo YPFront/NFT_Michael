@@ -33,7 +33,7 @@ export const theme = createTheme({
       borderRadius: 4
     },
     typography: {
-      fontFamily: '"Lato"',
+      fontFamily: `"Lato"`,
       h1: {
         fontFamily: '"DM Serif Display"',
       },
@@ -67,6 +67,7 @@ export const theme = createTheme({
         },
       },
       button: {
+        fontFamily: 'Lato',
         padding: '6px 22px',
         fontWeight: 700,
         fontSize: 18,

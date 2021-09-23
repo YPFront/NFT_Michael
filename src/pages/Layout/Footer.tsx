@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'flex-end',
     [theme.breakpoints.down('sm')]: {
       justifyContent: 'center',
+      marginTop: 16
     }
   }
 }));

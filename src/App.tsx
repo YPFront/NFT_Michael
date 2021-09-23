@@ -2,6 +2,7 @@ import {
   BrowserRouter as Router, Route, Switch
 } from "react-router-dom";
 import './App.css';
+import Activity from "./pages/Activity";
 import Page1A from './pages/page1a';
 import Page1B from './pages/page1b';
 
@@ -15,6 +16,9 @@ function App() {
           </Route>
           <Route path="/page2">
             <Page1B></Page1B>
+          </Route>
+          <Route path="/activity">
+            <Activity></Activity>
           </Route>
           <Route path="/">
             <Page1A></Page1A>
