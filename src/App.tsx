@@ -5,6 +5,7 @@ import './App.css';
 import Activity from "./pages/Activity";
 import Page1A from './pages/page1a';
 import Page1B from './pages/page1b';
+import SelectTest from "./pages/SelectTest";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
           </Route>
           <Route path="/activity">
             <Activity></Activity>
+          </Route>
+          <Route path="/selectTest">
+            <SelectTest></SelectTest>
           </Route>
           <Route path="/">
             <Page1A></Page1A>
