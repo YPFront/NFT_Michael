@@ -8,6 +8,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     listStyle: 'none',
     padding: 0,
     marginBottom: 0,
+    position: 'relative',
+    zIndex: 1,
     '& li': {
       marginBottom: 6,
       '&:last-child': {

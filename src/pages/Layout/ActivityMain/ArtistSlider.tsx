@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme: Theme) => ({
         '& .slick-slider': {
             paddingLeft: 25,
             paddingRight: 25,
+            [theme.breakpoints.down(500)]: {
+                padding: 0
+            }
         },
         '& .slick-prev': {
             left: 17,
@@ -198,10 +201,19 @@ const ActivitySlider = () => {
                             },
                         },
                         {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 3
+                            },
+                        },
+                        {
                             breakpoint: theme.breakpoints.values.sm,
                             settings: {
                                 slidesToShow: 1.5,
-                                slidesToScroll: 1
+                                slidesToScroll: 1,
+                                variableWidth: true,
+                                arrows: false
                             },
                         },
                     ]}

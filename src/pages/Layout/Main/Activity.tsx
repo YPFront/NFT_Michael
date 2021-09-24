@@ -1,5 +1,5 @@
-import { Typography } from '@material-ui/core';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Typography, useMediaQuery } from '@material-ui/core';
+import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import ActivityList from 'src/components/ActivityList';
 import { ActivityType } from 'src/components/ActivityList/ActivityType';
 import Background1 from 'src/assets/img/background2.svg'
@@ -24,11 +24,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
     padding: '0 96px',
     boxSizing: 'border-box',
+  },
+  lottie: {
+    opacity: 0.2
   }
 }));
 
 const ActivitySection = () => {
   const classes = useStyles();
+  const theme = useTheme();
+  const mediaMatches = useMediaQuery(theme.breakpoints.down(500));
   const data: ActivityType[] = [
     {
       userId1: 'seth',
@@ -73,13 +78,17 @@ const ActivitySection = () => {
       money: 5.5
     }
   ]
+  const lottie = mediaMatches ? {
+    marginTop: '-20%',
+    position: 'relative'
+  } : {}
 
   return (
     <div className={classes.root}>
       <img src={Background1} className={classes.background1}/>
       <Typography variant="h4"> Activity </Typography>
       <ActivityList data={data}></ActivityList>
-      <LottieImage src={GeoShape} width={396} height={379}/>
+      <LottieImage style={lottie} src={GeoShape} width={mediaMatches ? '80%' : 396}/>
     </div>
   );
 };

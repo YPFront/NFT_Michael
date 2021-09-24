@@ -173,6 +173,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       order: 4,
       marginBottom: 25,
     },
+    [theme.breakpoints.down(400)]: {
+      flexDirection: 'column',
+      gap: 10,
+      alignItems: 'center'
+    }
   },
   smallButton: {
     fontSize: 20,
@@ -198,6 +203,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: 17,
     [theme.breakpoints.down('sm')]: {
       padding: '7px',
+      marginRight: 10,
       '& img': {
         width: 15,
         height: 15,
@@ -445,7 +451,7 @@ const Hero = () => {
                 </PortionButton>
                 <span className={classes.tabletHidden}>Views: 597</span>
               </Box>
-              <Box flexGrow={1}></Box>
+              <Box flexGrow={1} className={classes.mobileHidden}></Box>
               <Box>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
                   <img src={Facebook} />

@@ -34,8 +34,11 @@ const useStyles = makeStyles((theme: Theme) => ({
             '& .MuiTab-root': {
                 minWidth: 'unset',
                 marginTop: 16,
-                marginRight: 16,
+                marginRight: 10,
             },
+            '& .MuiButtonBase-root': {
+                fontSize: 20
+            }
         },
     },
     topText: {
@@ -43,7 +46,13 @@ const useStyles = makeStyles((theme: Theme) => ({
         fontWeight: 700,
         lineHeight: '80px',
         marginBottom: -16,
-        marginTop: 0
+        marginTop: 0,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 20
+        },
+        [theme.breakpoints.down(500)]: {
+            lineHeight: 'initial'
+        }
     },
     noPadTabPanel: {
         paddingLeft: 0,
@@ -58,6 +67,12 @@ const useStyles = makeStyles((theme: Theme) => ({
             width: 'calc(100% + 25px)',
             marginBottom: 16
         },
+    },
+    mobileTab: {
+        [theme.breakpoints.down(500)]: {
+            alignItems: 'center',
+            flexDirection: 'column'
+        }
     },
     marketplaceTitle: {
         minWidth: 370,
@@ -115,7 +130,7 @@ const ActivityMain = (props: any) => {
             <Box className={classes.tabBox}>
                 <TabContext value={topTab}>
                     {mediaMatches ? (
-                        <Box display='flex' gridGap={15}>
+                        <Box display='flex' gridGap={15} className={classes.mobileTab}>
                             <p className={classes.topText}>Top:</p>
                             <Tabs value={topTab} onChange={handleTopTabChange} aria-label='basic tabs example' className={classes.tabButton}>
                                 <Tab value={'top-artist'} label='Artist' />

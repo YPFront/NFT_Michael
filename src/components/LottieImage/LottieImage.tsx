@@ -37,7 +37,7 @@ const defaultLottieOptions = {
 };
 
 const LottieImage = (props: any) => {
-  const { className, src, ...other } = props;
+  const { src, ...other } = props;
   const classes = useStyles();
 
   return (

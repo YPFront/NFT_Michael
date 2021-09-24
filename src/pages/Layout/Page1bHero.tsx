@@ -6,21 +6,19 @@ import { Link as ScrollLink } from 'react-scroll';
 import AvatarImg from 'src/assets/img/avatar.svg';
 import Character from 'src/assets/img/character.svg';
 import CheckBadge from 'src/assets/img/checkBadge.svg';
-import Etherum from 'src/assets/img/etherum.svg';
 import Expand from 'src/assets/img/expand.svg';
 import Eye from 'src/assets/img/eye.svg';
 import Facebook from 'src/assets/img/facebook.svg';
 import LinkImg from 'src/assets/img/link.svg';
-import PWhiteMark from 'src/assets/img/PWhiteMark.svg';
+import Live from 'src/assets/img/live.svg';
 import Telegram from 'src/assets/img/telegram.svg';
 import Twitter from 'src/assets/img/twitter.svg';
-import Live from 'src/assets/img/live.svg';
 import ArrowDown from 'src/assets/lottie/arrow_down.json';
 import Bubbles from 'src/assets/lottie/bubbles.json';
 import Octopus from 'src/assets/lottie/octopus.json';
+import SubmitBidForm from 'src/components/SubmitBidForm';
 import LottieImage from '../../components/LottieImage';
 import PortionButton from '../../components/PortionButton';
-import SubmitBidForm from 'src/components/SubmitBidForm';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -161,6 +159,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       order: 4,
       marginBottom: 25,
     },
+    [theme.breakpoints.down(400)]: {
+      flexDirection: 'column',
+      gap: 10,
+      alignItems: 'center'
+    }
   },
   smallButton: {
     fontSize: 20,
@@ -186,6 +189,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: 17,
     [theme.breakpoints.down('sm')]: {
       padding: '7px',
+      marginRight: 10,
       '& img': {
         width: 15,
         height: 15,
@@ -413,7 +417,7 @@ const Hero = () => {
                 <p>Highest bid</p>
                 <p className={classes.priceText}>18.333 ETH</p>
                 <p>by <b>salva</b></p>
-                <small>highest bid must stand for 15 mins before acceptance</small>
+                <small>highest bid must stand for 15 mins before acceptance</small>
               </Grid>
               <Grid item md={6} xs={12}>
                 <p> Auction ending in </p>
@@ -441,7 +445,7 @@ const Hero = () => {
                 </PortionButton>
                 <span className={classes.tabletHidden}>Views: 597</span>
               </Box>
-              <Box flexGrow={1}></Box>
+              <Box flexGrow={1} className={classes.mobileHidden}></Box>
               <Box>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
                   <img src={Facebook} />

@@ -1,5 +1,5 @@
-import { Avatar, Box, Link, Paper, Typography } from '@material-ui/core';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Avatar, Box, Link, Paper, Typography, useMediaQuery } from '@material-ui/core';
+import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
@@ -127,6 +127,8 @@ const CreatorSection = () => {
     },
   ];
   let sliderRef: any;
+  const theme = useTheme();
+  const mediaMatches = useMediaQuery(theme.breakpoints.down(500));
   
   return (
     <div>
@@ -144,11 +146,11 @@ const CreatorSection = () => {
               <b>Ron English</b> <Link href='#'>@ronenglish</Link> <img src={CheckBadge} />
             </p>
             <p>Italian ComicBook artist working for Image, DC, Marvel, Netflix, Boom!studios.</p>
-            <Box>
+            <Box display='flex' flexWrap='wrap'>
               <PortionButton color='primary' size='small' radius='hard' outline={true} className={clsx(classes.smallButton, 'active')}>
                 <Eye className={classes.eye} /> Following
               </PortionButton>
-              <span> 1,255 following </span>
+              <p> 1,255 following </p>
             </Box>
           </Box>
           <Box>
@@ -165,8 +167,7 @@ const CreatorSection = () => {
             <Box display='flex' gridGap={5}>
               <Box flexGrow={1}>
                 <PortionButton color='primary' className={classes.bigButton} fullWidth={true}>
-                  {' '}
-                  See all of Matteo’s creations{' '}
+                  {mediaMatches ? 'See all' : 'See all of Matteo’s creations'}
                 </PortionButton>
               </Box>
               <Box className={classes.tabletHidden}>

@@ -14,6 +14,11 @@ const useStyles = makeStyles((theme: Theme) => ({
         '& img': {
             width: '100%',
         },
+        [theme.breakpoints.down(500)]: {
+            width: '100%',
+            maxWidth: 'unset',
+            flexBasis: 'unset'
+        }
     },
     content: {
         display: 'flex',
@@ -52,7 +57,7 @@ const ActivityView = () => {
     const classes = useStyles();
     const theme = useTheme();
     const mediaMatches = useMediaQuery(theme.breakpoints.down('sm'));
-    const [showCount, setShowCount] = useState(mediaMatches ? 8 : 12);
+    const [showCount, setShowCount] = useState(0);
     const data: ActivityType[] = [
         {
             src: SaleImg,

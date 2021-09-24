@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 'calc(100% + 40px)',
     height: 365,
     overflow: 'hidden',
-    marginTop: 15,
+    marginTop: 15
   },
   blog: {
     width: 220,
