@@ -9,6 +9,8 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             position: 'relative',
+            width: 'fit-content',
+            margin: '0 auto',
             '&:focus': {
                 background: 'black',
             },
@@ -17,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
             borderRadius: 8,
             paddingTop: 16,
             paddingBottom: 16,
-            minWidth: 464,
+            minWidth: 400,
             position: 'absolute',
             top: 50,
             left: 0,
@@ -28,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
             transition: 'opacity 267ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 178ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
             visibility: 'hidden',
             overflow: 'hidden',
+            zIndex: 1,
             '& .MuiListItem-gutters': {
                 paddingLeft: 0,
                 paddingRight: 0,
@@ -45,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
             '& .MuiList-padding': {
                 padding: 0,
                 overflowY: 'scroll',
-                maxHeight: 600,
+                maxHeight: 400,
                 '&::-webkit-scrollbar': {
                     display: 'none',
                 },
@@ -54,15 +57,26 @@ const useStyles = makeStyles((theme: Theme) =>
                 opacity: 1,
                 visibility: 'visible',
             },
+            '&.right': {
+                right: 0,
+                left: 'unset',
+                '& .MuiListItem-button': {
+                    textAlign: 'right'
+                }
+            },
+            '&.center': {
+                left: 'calc(50% - 200px)',
+                right: 'unset',
+                '& .MuiListItem-button': {
+                    textAlign: 'center'
+                }
+            },
             [theme.breakpoints.down('xs')]: {
-                position: 'fixed',
                 minWidth: 'unset',
-                width: '100vw',
-                left: 0,
-                top: 0,
-                zIndex: 1,
-                borderTopLeftRadius: 0,
-                borderTopRightRadius: 0,
+                width: '100%',
+                '&.center': {
+                    left: '-50%'
+                },
                 '& .MuiList-padding': {
                     maxHeight: 'calc(100vh - 50px)'
                 },
@@ -157,7 +171,7 @@ export interface GroupOptionType {
 export interface Option {
     label: string;
     value: string;
-    data: any;
+    data?: any;
 }
 
 interface Props {
@@ -167,11 +181,12 @@ interface Props {
     label: string;
     groupMode?: boolean;
     searchMode?: boolean;
+    popupPosition?: string;
     onChange?: (e: Option) => void;
 }
 
 export default function SearchSelect(props: Props) {
-    const { className, options, label, searchMode, groupMode, value, onChange } = props;
+    const { className, popupPosition, options, label, searchMode, groupMode, value, onChange } = props;
     const classes = useStyles();
     const [selectedOptions, setSelectedOptions] = useState<any[]>(options);
     const [showGroupMode, setShowGroupMode] = useState(groupMode);
@@ -295,7 +310,7 @@ export default function SearchSelect(props: Props) {
             >
                 {label}
             </PortionButton>
-            <div className={clsx(classes.menuWrapper, menuOpen ? 'active' : '')}>
+            <div className={clsx(classes.menuWrapper, menuOpen ? 'active' : '', popupPosition ? popupPosition : 'left')}>
                 {searchMode ? (
                     <div className={classes.inputWrapper}>
                         <OutlinedInput id='select-menu' onChange={handleInputChange} value={searchInput} aria-describedby='outlined-weight-helper-text' className={clsx(classes.input, status)} />
