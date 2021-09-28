@@ -49,6 +49,23 @@ const groupedOptions = [
         label: 'Flavours',
         options: flavourOptions,
     },
+    {
+        label: 'Colours',
+        options: colourOptions,
+    },
+    {
+        label: 'Flavours',
+        options: flavourOptions,
+    },
+    
+    {
+        label: 'Colours',
+        options: colourOptions,
+    },
+    {
+        label: 'Flavours',
+        options: flavourOptions,
+    },
 ];
 
 export default function SelectTest({}: Props) {

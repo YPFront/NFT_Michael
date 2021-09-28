@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'absolute',
             top: 50,
             left: 0,
-            maxHeight: 600,
             border: '1px solid ' + theme.palette.secondary.main,
             background: theme.palette.common.white,
             boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
             opacity: 0,
             transition: 'opacity 267ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 178ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
             visibility: 'hidden',
+            overflow: 'hidden',
             '& .MuiListItem-gutters': {
                 paddingLeft: 0,
                 paddingRight: 0,
@@ -44,6 +44,11 @@ const useStyles = makeStyles((theme: Theme) =>
             },
             '& .MuiList-padding': {
                 padding: 0,
+                overflowY: 'scroll',
+                maxHeight: 600,
+                '&::-webkit-scrollbar': {
+                    display: 'none',
+                },
             },
             '&.active': {
                 opacity: 1,
@@ -58,7 +63,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 zIndex: 1,
                 borderTopLeftRadius: 0,
                 borderTopRightRadius: 0,
-            }
+            },
         },
         input: {
             width: '100%',
@@ -119,7 +124,7 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         menuList: {
-            paddingTop: '24px !important',
+            marginTop: '24px',
         },
         cancelButton: {
             position: 'absolute',
@@ -322,22 +327,22 @@ export default function SearchSelect(props: Props) {
                     )}
                     {showGroupMode == true
                         ? selectedOptions.map((group: any, i: number) => (
-                                <div key={i} className={classes.group}>
-                                    <MenuItem className={classes.groupHeader} disabled={true}>
-                                        <ListItemText>{group.label}</ListItemText>
-                                    </MenuItem>
-                                    {group.options.map((option: Option, j: number) => (
-                                        <MenuItem className={clsx(classes.option, option.value == selectedValue ? 'active' : '')} key={j} onClick={() => handleSelect(option)}>
-                                            <ListItemText>{option.label}</ListItemText>
-                                        </MenuItem>
-                                    ))}
-                                </div>
-                            ))
+                              <div key={i} className={classes.group}>
+                                  <MenuItem className={classes.groupHeader} disabled={true}>
+                                      <ListItemText>{group.label}</ListItemText>
+                                  </MenuItem>
+                                  {group.options.map((option: Option, j: number) => (
+                                      <MenuItem className={clsx(classes.option, option.value == selectedValue ? 'active' : '')} key={j} onClick={() => handleSelect(option)}>
+                                          <ListItemText>{option.label}</ListItemText>
+                                      </MenuItem>
+                                  ))}
+                              </div>
+                          ))
                         : selectedOptions.map((option: Option, i: number) => (
-                                <MenuItem className={clsx(classes.option, option.value == selectedValue ? 'active' : '')} key={i} onClick={() => handleSelect(option)}>
-                                    <ListItemText>{option.label}</ListItemText>
-                                </MenuItem>
-                            ))}
+                              <MenuItem className={clsx(classes.option, option.value == selectedValue ? 'active' : '')} key={i} onClick={() => handleSelect(option)}>
+                                  <ListItemText>{option.label}</ListItemText>
+                              </MenuItem>
+                          ))}
                 </MenuList>
             </div>
         </div>
