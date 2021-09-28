@@ -73,9 +73,9 @@ const useStyles = makeStyles((theme: Theme) =>
             },
             [theme.breakpoints.down('xs')]: {
                 minWidth: 'unset',
-                width: '100%',
+                width: 'calc(94vw - 16px)',
                 '&.center': {
-                    left: '-50%'
+                    left: 'calc(50% - 47vw + 8px)',
                 },
                 '& .MuiList-padding': {
                     maxHeight: 'calc(100vh - 50px)'
