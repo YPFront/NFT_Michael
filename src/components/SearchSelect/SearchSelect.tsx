@@ -63,6 +63,9 @@ const useStyles = makeStyles((theme: Theme) =>
                 zIndex: 1,
                 borderTopLeftRadius: 0,
                 borderTopRightRadius: 0,
+                '& .MuiList-padding': {
+                    maxHeight: 'calc(100vh - 50px)'
+                },
             },
         },
         input: {
