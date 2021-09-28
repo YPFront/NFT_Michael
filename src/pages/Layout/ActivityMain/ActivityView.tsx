@@ -1,11 +1,8 @@
-import { Avatar, Box, Grid, useMediaQuery } from '@material-ui/core';
+import { Box, Grid, useMediaQuery } from '@material-ui/core';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import AvatarImg from 'src/assets/img/avatar.svg';
 import SaleImg from 'src/assets/img/sale_img.svg';
 import PortionButton from 'src/components/PortionButton';
 

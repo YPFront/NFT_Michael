@@ -5,6 +5,7 @@ import { ActivityType } from 'src/components/ActivityList/ActivityType';
 import Background1 from 'src/assets/img/background2.svg'
 import GeoShape from 'src/assets/lottie/geoShape.json';
 import LottieImage from 'src/components/LottieImage';
+import { useEffect, useState } from 'react';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -78,17 +79,22 @@ const ActivitySection = () => {
       money: 5.5
     }
   ]
-  const lottie = mediaMatches ? {
-    marginTop: '-20%',
-    position: 'relative'
-  } : {}
+  const [lottieMedia, setLottieMedia] = useState({});
+
+  useEffect(() => {
+    if (mediaMatches)
+      setLottieMedia({
+        marginTop: '-20%',
+        position: 'relative'
+      });
+  }, [mediaMatches])
 
   return (
     <div className={classes.root}>
       <img src={Background1} className={classes.background1}/>
       <Typography variant="h4"> Activity </Typography>
       <ActivityList data={data}></ActivityList>
-      <LottieImage style={lottie} src={GeoShape} width={mediaMatches ? '80%' : 396}/>
+      <LottieImage style={lottieMedia} src={GeoShape} width={mediaMatches ? '80%' : 396}/>
     </div>
   );
 };
