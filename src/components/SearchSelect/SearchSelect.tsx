@@ -11,9 +11,18 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'relative',
             width: 'fit-content',
             margin: '0 auto',
+            paddingLeft: 8,
+            paddingRight: 8,
+            boxSizing: 'border-box',
             '&:focus': {
                 background: 'black',
             },
+            [theme.breakpoints.down('sm')]: {
+                width: '100%',
+                '& button': {
+                    width: '100%'
+                }
+            }
         },
         menuWrapper: {
             borderRadius: 8,

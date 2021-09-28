@@ -104,8 +104,8 @@ export default function SelectTest({}: Props) {
 
     return (
         <ThemeProvider theme={PortionTheme}>
-            <Box display='flex' justifyContent='space-between' flexWrap='wrap'>
-                <Box display='flex' gridGap={20} className={classes.filter}>
+            <Box display='flex' justifyContent='space-between' flexWrap='wrap' px={4}>
+                <Box display='flex' className={classes.filter}>
                     <Box>
                         <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Artist' />
                     </Box>
