@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import { ChangeEvent, createRef, useEffect, useState } from 'react';
 import PortionButton from '../PortionButton';
 import { CancelRounded } from '@material-ui/icons';
+import { OptionsType } from 'react-select';
+import { unstable_batchedUpdates } from 'react-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -20,9 +22,9 @@ const useStyles = makeStyles((theme: Theme) =>
             [theme.breakpoints.down('sm')]: {
                 width: '100%',
                 '& button': {
-                    width: '100%'
-                }
-            }
+                    width: '100%',
+                },
+            },
         },
         menuWrapper: {
             borderRadius: 8,
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
             background: theme.palette.common.white,
             boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
             opacity: 0,
-            transition: 'opacity 267ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 178ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+            transition: 'all 178ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
             visibility: 'hidden',
             overflow: 'hidden',
             zIndex: 1,
@@ -64,30 +66,49 @@ const useStyles = makeStyles((theme: Theme) =>
             },
             '&.active': {
                 opacity: 1,
-                visibility: 'visible',
+                visibility: 'visible'
             },
             '&.right': {
                 right: 0,
                 left: 'unset',
                 '& .MuiListItem-button': {
-                    textAlign: 'right'
-                }
+                    textAlign: 'right',
+                },
             },
             '&.center': {
                 left: 'calc(50% - 200px)',
                 right: 'unset',
                 '& .MuiListItem-button': {
-                    textAlign: 'center'
-                }
+                    textAlign: 'center',
+                },
             },
             [theme.breakpoints.down('xs')]: {
+                // minWidth: 'unset',
+                // width: 'calc(94vw - 16px)',
+                // '&.center': {
+                //     left: 'calc(50% - 47vw + 8px)',
+                // },
+                // '& .MuiList-padding': {
+                //     maxHeight: 'calc(100vh - 50px)',
+                // },
+                position: 'relative',
+                top: 'unset',
+                left: 'unset',
+                right: 'unset',
+                width: '100%',
                 minWidth: 'unset',
-                width: 'calc(94vw - 16px)',
-                '&.center': {
-                    left: 'calc(50% - 47vw + 8px)',
+                height: 0,
+                boxSizing: 'border-box',
+                padding: 0,
+                '&.active': {
+                    height: 500,
+                    paddingTop: 16,
+                    paddingBottom: 16,
+                    marginTop: 16,
+                    marginBottom: 16
                 },
-                '& .MuiList-padding': {
-                    maxHeight: 'calc(100vh - 50px)'
+                '&.center': {
+                    left: 0,
                 },
             },
         },
@@ -157,6 +178,9 @@ const useStyles = makeStyles((theme: Theme) =>
             right: 24,
             top: 13,
         },
+        selectedButton: {
+            backgroundColor: 'rgb(230, 240, 245)'
+        },
         noResult: {
             color: theme.palette.common.black,
             fontSize: 20,
@@ -191,7 +215,7 @@ interface Props {
     groupMode?: boolean;
     searchMode?: boolean;
     popupPosition?: string;
-    onChange?: (e: Option) => void;
+    onChange?: (e: Option | null) => void;
 }
 
 export default function SearchSelect(props: Props) {
@@ -204,7 +228,30 @@ export default function SearchSelect(props: Props) {
     const [menuOpen, setMenuOpenState] = useState(false);
     const [searchInput, setSearchInput] = useState('');
     const [selectedValue, setSelectedValue] = useState(value ? value : '');
+    const [selectedOption, setSelectedOption] = useState<Option | null>(null);
     const [menuWrapper, setMenuWrapper] = useState<HTMLDivElement>();
+
+    useEffect(() => {
+        let _options: any[] = options;
+        setSelectedOption(null);
+        if (groupMode) {
+            _options.forEach((group: GroupOptionType) => {
+                group.options.forEach((option: Option) => {
+                    if (option.value == selectedValue) {
+                        setSelectedOption(option);
+                        return false;
+                    }
+                });
+            });
+        } else {
+            _options.forEach((option: Option) => {
+                if (option.value == selectedValue) {
+                    setSelectedOption(option);
+                    return false;
+                }
+            });
+        }
+    }, [selectedValue]);
 
     const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         let chosenOptions: any[] = [];
@@ -270,8 +317,13 @@ export default function SearchSelect(props: Props) {
     };
 
     const handleSelect = (opt: Option) => {
-        setSelectedValue(opt.value);
-        if (onChange) onChange(opt);
+        if (opt.value == selectedValue) {
+            setSelectedValue('');
+            if (onChange) onChange(null);
+        } else {
+            setSelectedValue(opt.value);
+            if (onChange) onChange(opt);            
+        }
 
         setMenuOpen(false);
         initState();
@@ -312,12 +364,13 @@ export default function SearchSelect(props: Props) {
             <PortionButton
                 color='primary'
                 outline={true}
+                className={selectedOption ? classes.selectedButton : ''}
                 onClick={() => {
                     setMenuOpen(!menuOpen);
                     initState();
                 }}
             >
-                {label}
+                {selectedOption ? selectedOption.label : label}
             </PortionButton>
             <div className={clsx(classes.menuWrapper, menuOpen ? 'active' : '', popupPosition ? popupPosition : 'left')}>
                 {searchMode ? (
