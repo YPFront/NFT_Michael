@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme: Theme) => ({
             width: '100%',
             maxWidth: 'unset',
             flexBasis: 'unset'
+        },
+        [theme.breakpoints.up(1440)]: {
+            maxWidth: '20%',
         }
     },
     content: {
@@ -23,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         minHeight: 160,
         padding: '14px 20px',
+        background: theme.palette.common.white,
         '& b': {
             fontWeight: 400,
             color: theme.palette.primary.main,

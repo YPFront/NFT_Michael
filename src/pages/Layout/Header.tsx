@@ -115,13 +115,16 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
+  transparentHeader: {
+    background: 'linear-gradient(rgba(4, 42, 61, 0.8) 0%, rgba(12, 68, 91, 0.8) 53.48%)'
+  },
   '.MuiBackdrop-root': {
     top: 100,
   },
 }));
 
-const Header = (props: { login?: boolean, color?: string }) => {
-  const { login, color } = props;
+const Header = (props: { login?: boolean, color?: string, active?: string, transparent?: boolean }) => {
+  const { login, color, transparent, active } = props;
   const classes = useStyles();
   const theme = useTheme();
   const mediaMatches = useMediaQuery(theme.breakpoints.down('sm'));
@@ -130,14 +133,14 @@ const Header = (props: { login?: boolean, color?: string }) => {
   const handleDrawerClose = () => setDrawerOpen(false);
 
   return (
-    <AppBar className={clsx(classes.appBar, color == 'primary' ? classes.primaryAppBar : '')} position='absolute'>
+    <AppBar className={clsx(classes.appBar, color == 'primary' ? classes.primaryAppBar : '', transparent == true ? classes.transparentHeader : '')} position='absolute'>
       {mediaMatches == false ? (
         <Toolbar className={clsx(classes.toolBar, 'container')}>
           <Box width={1} display='flex' flexDirection='row' justifyContent='space-between' alignItems='center'>
             <Link href='#'>
               <img src={Logo} />
             </Link>
-            <ToggleButtonGroup value='drops' className={classes.buttonGroup} exclusive>
+            <ToggleButtonGroup value={active ? active : 'drops'} className={classes.buttonGroup} exclusive>
               <ToggleButton value='drops' aria-label='Drops'>
                 Drops
               </ToggleButton>

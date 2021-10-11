@@ -1,9 +1,9 @@
 import { makeStyles, ThemeProvider } from '@material-ui/core';
 import Footer from 'src/pages/Layout/Footer';
 import Header from 'src/pages/Layout/Header';
-import Hero from 'src/pages/Layout/Page1aHero';
-import Main from 'src/pages/Layout/Main/Main';
+import Hero from 'src/pages/Layout/GalleryHero';
 import { theme as PortionTheme } from 'src/theme/theme';
+import GalleryMain from '../Layout/GalleryMain/GalleryMain';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,10 +18,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('lg')]: {
       fontSize: 18,
       lineHeight: '21.5px',
-      // '& p': {
-      //   marginBlockStart: 8,
-      //   marginBlockEnd: 8
-      // }
     }
   },
   container: {
@@ -35,16 +31,16 @@ const useStyles = makeStyles((theme) => ({
 
 type Props = {};
 
-export default function Page1A({}: Props) {
+export default function Gallery({}: Props) {
   const classes = useStyles();
 
   return (
     <ThemeProvider theme={PortionTheme}>
       <div className={classes.root}>
-        <Header />
+        <Header login={false} color="primary" transparent={true} active="marketplace"/>
         <main className={classes.main}>
           <Hero></Hero>
-          <Main></Main>
+          <GalleryMain></GalleryMain>
         </main>
         <Footer />
       </div>

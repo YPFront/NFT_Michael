@@ -1,6 +1,6 @@
 import { makeStyles, ThemeProvider } from '@material-ui/core';
 import Footer from 'src/pages/Layout/Footer';
-import Header from 'src/pages/Layout/Page1bHeader';
+import Header from 'src/pages/Layout/Header';
 import Hero from 'src/pages/Layout/Page1bHero';
 import Main from 'src/pages/Layout/Main/Main';
 import { theme as PortionTheme } from 'src/theme/theme';
