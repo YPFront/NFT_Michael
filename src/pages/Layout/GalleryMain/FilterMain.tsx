@@ -1,4 +1,6 @@
 import { Box, makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
+import { ToggleButton } from '@material-ui/lab';
+import { useState } from 'react';
 import SearchSelect from 'src/components/SearchSelect';
 import SectionCollapse from 'src/components/SectionCollapse';
 
@@ -35,8 +37,24 @@ const useStyles = makeStyles((theme) => ({
     collapseButton: {
         fontSize: 20,
         lineHeight: '24px',
-        fontWeight: 700
-    }
+        fontWeight: 700,
+    },
+    toggleButton: {
+        color: theme.palette.primary.main,
+        padding: '6px 22px',
+        minHeight: 'unset',
+        [theme.breakpoints.down('sm')]: {
+            width: 'calc(100% - 16px)',
+        },
+        '&.MuiButtonBase-root': {
+            borderRadius: 8,
+            border: `1px solid ${theme.palette.primary.main}`,
+            '&:hover, &.Mui-selected': {
+                backgroundColor: theme.palette.primary.main,
+                color: theme.palette.common.white,
+            },
+        },
+    },
 }));
 
 type Props = {};
@@ -108,22 +126,32 @@ export default function FilterMain({}: Props) {
     const theme = useTheme();
     const smMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const xsMatch = useMediaQuery(theme.breakpoints.down('xs'));
+    const [verified, setVerified] = useState(false);
 
     const FilterButtons = () => {
         return (
             <Box display='flex' justifyContent='space-between' flexWrap='wrap' className={classes.parentBox}>
                 <Box display='flex' className={classes.filter}>
                     <Box>
-                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Artists' />
+                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Artist' />
                     </Box>
                     <Box>
-                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : 'right'} searchMode={true} groupMode={true} label='Collections' />
+                        <SearchSelect options={groupedOptions} popupPosition={smMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Collections' />
                     </Box>
                     <Box>
-                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : 'right'} searchMode={true} groupMode={true} label='Categories' />
+                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : smMatch ? 'right' : 'left'} searchMode={true} groupMode={true} label='Categories' />
                     </Box>
                     <Box>
-                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : 'right'} searchMode={true} groupMode={true} label='Palm' />
+                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Tags' />
+                    </Box>
+                    <Box>
+                        <SearchSelect options={groupedOptions} popupPosition={smMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Chain' />
+                    </Box>
+                    <Box>
+                        <ToggleButton value={verified} aria-label='Verified' className={classes.toggleButton} onChange={(e) => setVerified(!verified)} selected={verified}>
+                            Verified Only
+                        </ToggleButton>
+                        {/* <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : smMatch ? 'right' : 'left'} searchMode={true} groupMode={true} label='Verified' /> */}
                     </Box>
                 </Box>
                 <Box display='flex' className={classes.sortBy}>

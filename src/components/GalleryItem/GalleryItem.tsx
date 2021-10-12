@@ -10,6 +10,7 @@ import { useRef, useState } from 'react';
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
         background: theme.palette.common.white,
+        boxShadow: '2px 6px 20px rgb(16 16 16 / 10%)'
     },
     avatar: {
         border: '2px solid',

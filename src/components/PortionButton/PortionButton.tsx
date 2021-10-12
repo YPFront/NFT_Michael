@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
       '&.MuiButton-outlinedPrimary': {
         color: theme.palette.primary.main,
+        borderColor: theme.palette.primary.main,
         '&:hover': {
           background: theme.palette.primary.main,
           color: theme.palette.common.white,

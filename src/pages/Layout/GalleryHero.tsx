@@ -43,13 +43,22 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
     },
     imageBoxRow: {
-        height: 'fit-content',
-        animation: `$myEffect 25000ms ${theme.transitions.easing.sharp}`,
+        height: '100%',
+        maxHeight: 2000,
+        animationDuration: '25000ms',
+        animationTimingFunction: theme.transitions.easing.sharp,
+        // animation: `$myEffect 25000ms ${theme.transitions.easing.sharp}`,
         animationIterationCount: 'infinite',
         [theme.breakpoints.down('sm')]: {
-            animation: `$myEffect-mobile 25000ms ${theme.transitions.easing.sharp}`,
+            // animation: `$myEffect-mobile 25000ms ${theme.transitions.easing.sharp}`,
             gap: 13
         },        
+    },
+    animationInt: {
+        animation: `$myEffect 25000ms ${theme.transitions.easing.sharp}`,
+        [theme.breakpoints.down('sm')]: {
+            animation: `$myEffect-mobile 25000ms ${theme.transitions.easing.sharp}`,
+        }
     },
     titleWrapper: {
         position: 'absolute',
@@ -144,8 +153,10 @@ const createBackgroundImages = () => {
 const Hero = () => {
     const classes = useStyles();
     let [backgroundImages, setBackgroundImages] = useState<string[][]>(createBackgroundImages());
+    let [showAnimation, setShowAnimation] = useState(false);
 
     const drawAnimationBackground = () => {
+        setTimeout(() => {setShowAnimation(true)}, 200)
         return (
             <div className={classes.animationBackgroundRoot}>
                 <div className={classes.titleWrapper}>
@@ -157,7 +168,7 @@ const Hero = () => {
                 </div>
                 <Box display='flex' flexDirection='row' gridGap={30} className={classes.imageBoxWrap}>
                     {backgroundImages.map((imageRow, rowIndex) => (
-                        <Box display='flex' flexDirection='column' gridGap={30} key={rowIndex} className={clsx(classes.imageBoxRow, rowIndex % 2 ? classes.animationEven : classes.animationOdd)}>
+                        <Box display='flex' flexDirection='column' gridGap={30} key={rowIndex} className={clsx(classes.imageBoxRow, rowIndex % 2 ? classes.animationEven : classes.animationOdd, showAnimation ? classes.animationInt : '')}>
                             {imageRow.map((imageSrc, imageIndex) => (
                                 <img src={imageSrc} key={imageIndex} />
                             ))}
