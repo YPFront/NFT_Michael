@@ -47,8 +47,6 @@ const useStyles = makeStyles((theme: Theme) => ({
         maxHeight: 2000,
         animationDuration: '25000ms',
         animationTimingFunction: theme.transitions.easing.sharp,
-        // animation: `$myEffect 25000ms ${theme.transitions.easing.sharp}`,
-        animationIterationCount: 'infinite',
         [theme.breakpoints.down('sm')]: {
             // animation: `$myEffect-mobile 25000ms ${theme.transitions.easing.sharp}`,
             gap: 13
@@ -56,8 +54,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     animationInt: {
         animation: `$myEffect 25000ms ${theme.transitions.easing.sharp}`,
+        animationIterationCount: 'infinite',
         [theme.breakpoints.down('sm')]: {
             animation: `$myEffect-mobile 25000ms ${theme.transitions.easing.sharp}`,
+            animationIterationCount: 'infinite',
         }
     },
     titleWrapper: {

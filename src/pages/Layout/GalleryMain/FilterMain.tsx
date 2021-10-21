@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '6px 22px',
         minHeight: 'unset',
         [theme.breakpoints.down('sm')]: {
-            width: 'calc(100% - 16px)',
+            width: 'calc(100% - 6px)',
         },
         '&.MuiButtonBase-root': {
             borderRadius: 8,
@@ -133,19 +133,20 @@ export default function FilterMain({}: Props) {
             <Box display='flex' justifyContent='space-between' flexWrap='wrap' className={classes.parentBox}>
                 <Box display='flex' className={classes.filter}>
                     <Box>
-                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Artist' />
+                        <SearchSelect 
+                        options={groupedOptions} popupPosition={xsMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Artist' />
                     </Box>
                     <Box>
-                        <SearchSelect options={groupedOptions} popupPosition={smMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Collections' />
+                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : (smMatch ? 'right' : 'left')} searchMode={true} groupMode={true} label='Collections' />
                     </Box>
                     <Box>
-                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : smMatch ? 'right' : 'left'} searchMode={true} groupMode={true} label='Categories' />
+                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Categories' />
                     </Box>
                     <Box>
-                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Tags' />
+                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : (smMatch ? 'right' : 'left')} searchMode={true} groupMode={true} label='Tags' />
                     </Box>
                     <Box>
-                        <SearchSelect options={groupedOptions} popupPosition={smMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Chain' />
+                        <SearchSelect options={groupedOptions} popupPosition={xsMatch ? 'center' : 'left'} searchMode={true} groupMode={true} label='Chain' />
                     </Box>
                     <Box>
                         <ToggleButton value={verified} aria-label='Verified' className={classes.toggleButton} onChange={(e) => setVerified(!verified)} selected={verified}>

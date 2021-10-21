@@ -1,11 +1,9 @@
 import { Link, ListItemText, MenuItem, MenuList, OutlinedInput } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import { ChangeEvent, createRef, useEffect, useState } from 'react';
-import PortionButton from '../PortionButton';
 import { CancelRounded } from '@material-ui/icons';
-import { OptionsType } from 'react-select';
-import { unstable_batchedUpdates } from 'react-dom';
+import clsx from 'clsx';
+import { ChangeEvent, useEffect, useState } from 'react';
+import PortionButton from '../PortionButton';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -13,8 +11,8 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'relative',
             width: 'fit-content',
             margin: '0 auto',
-            paddingLeft: 8,
-            paddingRight: 8,
+            paddingLeft: 3,
+            paddingRight: 3,
             boxSizing: 'border-box',
             '&:focus': {
                 background: 'black',
