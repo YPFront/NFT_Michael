@@ -7,6 +7,7 @@ import Page1A from './pages/page1a';
 import Page1B from './pages/page1b';
 import Gallery from './pages/Gallery';
 import SelectTest from "./pages/SelectTest";
+import Transaction from "./pages/Transaction";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/gallery">
             <Gallery></Gallery>
+          </Route>
+          <Route path="/transaction">
+            <Transaction></Transaction>
           </Route>
           <Route path="/">
             <Page1A></Page1A>
