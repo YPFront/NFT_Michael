@@ -14,28 +14,39 @@ const useStyles = makeStyles((theme: Theme) => ({
         minHeight: 109,
         background: '#FCF8F2',
         position: 'relative',
+        transition: 'all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         '& .playButton': {
-            display: 'none',
             position: 'absolute',
             top: 16,
-            right: 16,
+            right: 32,
+            width: 0,
+        },
+        '& .playIcon': {
+            width: 0,
+            transition: 'width 0.5s ease',
+        },
+        '& .actionWrapper': {
+            transition: 'color 0.5s ease',
         },
         '&:hover': {
             borderColor: theme.palette.primary.main,
             background: theme.palette.common.white,
-            '& .playButton': {
-                display: 'block',
+            '& .playIcon': {
+                width: 24,
+            },
+            '& .actionWrapper': {
+                color: theme.palette.primary.main,
             },
         },
         '& p': {
-            margin: 0
+            margin: 0,
         },
         [theme.breakpoints.down(768)]: {
             padding: '18px 10px',
             minHeight: 'unset',
             '& .playButton': {
                 top: 'unset',
-                bottom: 16,                
+                bottom: 16,
             },
         },
     },
@@ -43,19 +54,20 @@ const useStyles = makeStyles((theme: Theme) => ({
         [theme.breakpoints.down(350)]: {
             flexWrap: 'wrap',
             justifyContent: 'center',
-            gap: 10
+            gap: 10,
         },
     },
     imageWrapper: {
+        lineHeight: 0,
         '& img': {
             borderRadius: '9px 0 0 9px',
-            height: 107,
-            width: 107,
+            height: 109,
+            width: 109,
             [theme.breakpoints.down(768)]: {
                 borderRadius: 0,
                 height: 82,
                 width: 82,
-            }
+            },
         },
     },
     content: {
@@ -63,10 +75,10 @@ const useStyles = makeStyles((theme: Theme) => ({
             flexDirection: 'column',
             gap: 5,
             padding: 0,
-            paddingLeft: 8
+            paddingLeft: 8,
         },
         [theme.breakpoints.down(350)]: {
-            alignItems: 'center'
+            alignItems: 'center',
         },
     },
     contentText: {
@@ -77,11 +89,11 @@ const useStyles = makeStyles((theme: Theme) => ({
             margin: 0,
         },
         '& small': {
-            marginTop: 5
+            marginTop: 5,
         },
         [theme.breakpoints.down(768)]: {
-            minHeight: 82
-        }
+            minHeight: 82,
+        },
     },
     portionButton: {
         height: 50,
@@ -89,15 +101,15 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: 'fit-content',
         [theme.breakpoints.down(768)]: {
             height: 40,
-            marginTop: 10
-        }
+            marginTop: 10,
+        },
     },
     textRight: {
         textAlign: 'right',
         [theme.breakpoints.down(768)]: {
-            textAlign: 'left'
-        }
-    }
+            textAlign: 'left',
+        },
+    },
 }));
 
 type Props = {
@@ -121,8 +133,8 @@ const TransactionListItem = (props: Props) => {
                         <p>{text}</p>
                         <small>{date}</small>
                     </Box>
-                    <Box width={175}>
-                        {() => {
+                    <Box width={175} className='actionWrapper'>
+                        {(() => {
                             switch (type) {
                                 case 'CLAIM':
                                     return (
@@ -139,32 +151,32 @@ const TransactionListItem = (props: Props) => {
                                     );
                                 case 'ACCEPTED':
                                     return (
-                                        <div>
+                                        <div className={classes.textRight}>
                                             <p>Accepted</p>
                                         </div>
                                     );
                                 case 'SOLD':
                                     return (
-                                        <div>
+                                        <div className={classes.textRight}>
                                             <p>Sold</p>
                                         </div>
                                     );
                                 case 'REJECTED':
                                     return (
-                                        <div>
+                                        <div className={classes.textRight}>
                                             <p>Rejected</p>
                                         </div>
                                     );
                                 default:
                                     return '';
                             }
-                        }}
+                        })()}
                     </Box>
                 </Box>
             </Box>
             {type == 'NORMAL' ? (
                 <Link href='#' className='playButton'>
-                    <PlayArrowOutlinedIcon fontSize='medium'></PlayArrowOutlinedIcon>
+                    <PlayArrowOutlinedIcon fontSize='medium' className='playIcon'></PlayArrowOutlinedIcon>
                 </Link>
             ) : (
                 ''

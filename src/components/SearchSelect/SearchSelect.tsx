@@ -70,17 +70,17 @@ const useStyles = makeStyles((theme: Theme) =>
                 right: 0,
                 left: 'unset',
                 '& .MuiListItem-button': {
-                    textAlign: 'right',
+                    textAlign: 'left',
                 },
             },
             '&.center': {
                 left: 'calc(50% - 200px)',
                 right: 'unset',
                 '& .MuiListItem-button': {
-                    textAlign: 'center',
+                    textAlign: 'left',
                 },
             },
-            [theme.breakpoints.down('xs')]: {
+            [theme.breakpoints.down(600)]: {
                 // minWidth: 'unset',
                 // width: 'calc(94vw - 16px)',
                 // '&.center': {

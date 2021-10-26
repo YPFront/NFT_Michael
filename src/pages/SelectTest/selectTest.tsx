@@ -110,6 +110,8 @@ export default function SelectTest({}: Props) {
     const smMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const xsMatch = useMediaQuery(theme.breakpoints.down('xs'));
 
+    console.log(xsMatch)
+    
     const FilterButtons = () => {
         return (
             <Box display='flex' justifyContent='space-between' flexWrap='wrap' className={classes.parentBox}>

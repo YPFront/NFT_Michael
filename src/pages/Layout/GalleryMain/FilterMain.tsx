@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
                 marginTop: 12,
             },
         },
-        [theme.breakpoints.down('xs')]: {
+        [theme.breakpoints.down(600)]: {
             '& > .MuiBox-root': {
                 width: '100%',
                 textAlign: 'center',
@@ -125,7 +125,7 @@ export default function FilterMain({}: Props) {
     const classes = useStyles();
     const theme = useTheme();
     const smMatch = useMediaQuery(theme.breakpoints.down('sm'));
-    const xsMatch = useMediaQuery(theme.breakpoints.down('xs'));
+    const xsMatch = useMediaQuery(theme.breakpoints.down(600));
     const [verified, setVerified] = useState(false);
 
     const FilterButtons = () => {
