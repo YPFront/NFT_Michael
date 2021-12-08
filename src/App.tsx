@@ -8,6 +8,8 @@ import Page1B from './pages/page1b';
 import Gallery from './pages/Gallery';
 import SelectTest from "./pages/SelectTest";
 import Transaction from "./pages/Transaction";
+import Terms from "./pages/Terms";
+import Errors from "./pages/Errors";
 
 function App() {
   return (
@@ -32,7 +34,13 @@ function App() {
           <Route path="/transaction">
             <Transaction></Transaction>
           </Route>
-          <Route path="/">
+          <Route path="/terms">
+            <Terms></Terms>
+          </Route>
+          <Route path="/errors">
+            <Errors></Errors>
+          </Route>
+          <Route path="">
             <Page1A></Page1A>
           </Route>
         </Switch>
