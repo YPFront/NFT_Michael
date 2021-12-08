@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: 30
   },
   line: {
-    borderBottom: '1px solid ' + theme.palette.secondary.main,
+    borderBottom: '1px solid #DAB679',
     marginBottom: 23,
     width: '50%'
   },

@@ -23,10 +23,10 @@ import PortionButton from '../../components/PortionButton';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minHeight: '100vh',
-    background: 'linear-gradient(180deg, #042A3D 0%, #0C445B 53.48%)',
+    background: theme.palette.primary.main,
     overflow: 'hidden',
     position: 'relative',
-    color: theme.palette.common.white,
+    color: theme.palette.common.black,
     [theme.breakpoints.down('lg')]: {
       minHeight: 'unset',
     },
@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   avatar: {
     border: '2px solid',
-    borderColor: theme.palette.secondary.main,
+    borderColor: theme.palette.common.black,
     padding: 2,
     width: 60,
     height: 60,
@@ -353,12 +353,6 @@ const Hero = () => {
   return (
     <div ref={thisRef}>
       <div className={clsx(classes.root, 'container')}>
-        <div className={classes.background1}>
-          <LottieImage width={936} height={489} src={Octopus}/>
-        </div>
-        <div className={classes.bubbles}>
-          <LottieImage width={300} height={300} src={Bubbles}/>
-        </div>
 
         <Grid container className={classes.main} spacing={10}>
           <Grid item md={6} xs={12} className={clsx(classes.characterContainer, classes.mobileHidden)}>
@@ -436,7 +430,7 @@ const Hero = () => {
             </Box>
             <Grid container className={classes.action} spacing={3}>
               <Grid item xs={12} md={6}>
-                <PortionButton color='secondary' animation={true}>Buy</PortionButton>
+                <PortionButton color='secondary'>Buy</PortionButton>
               </Grid>
               <Grid item xs={12} md={6}>
                 <PortionButton color='secondary' outline={true}>
@@ -492,7 +486,7 @@ const Hero = () => {
               Reserve price <b>10,000 PRT</b> or <b>6.626 ETH</b>
             </Box>
             <Box width={332} display='flex' justifyContent='space-between' alignItems='center'>
-              <PortionButton color='secondary' className={classes.navbarButton} animation={true}>
+              <PortionButton color='secondary' className={classes.navbarButton}>
                 Buy
               </PortionButton>
               <PortionButton color='secondary' outline={true} className={clsx(classes.navbarButton, classes.minWidth120)}>

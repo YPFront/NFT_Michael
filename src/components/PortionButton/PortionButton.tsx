@@ -11,6 +11,18 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       padding: '6px 22px',
+      transition: 'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+      height: 'fit-content',
+      '& svg': {
+        transition: 'fill 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+      },
+      '&.MuiButton-containedSecondary': {
+        color: theme.palette.primary.main,
+        '&:hover': {
+          background: theme.palette.common.white,
+          color: theme.palette.secondary.main,
+        }
+      },
       '&.MuiButton-colorInherit.MuiButton-contained': {
         color: theme.palette.common.black,
         background: theme.palette.common.white,
@@ -21,9 +33,8 @@ const useStyles = makeStyles((theme: Theme) =>
       '&.MuiButton-outlinedSecondary': {
         color: theme.palette.secondary.main,
         '&.MuiButton-sizeSmall': {
-          opacity: 0.5,
+          minHeight: 'unset',
           '&:hover': {
-            opacity: 1,
             background: 'transparent',
           },
         },
@@ -41,9 +52,15 @@ const useStyles = makeStyles((theme: Theme) =>
         },
       },
       '&.MuiButton-colorInherit.MuiButton-outlined': {
-        opacity: 0.5,
+        '& svg': {
+          fill: theme.palette.secondary.main
+        },
         '&:hover': {
-          opacity: 1,
+          background: theme.palette.secondary.main,
+          color: theme.palette.common.white,
+          '& svg': {
+            fill: theme.palette.common.white
+          },
         },
       },
     },

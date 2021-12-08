@@ -16,11 +16,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '24px',
     [theme.breakpoints.down('lg')]: {
       fontSize: 18,
-      lineHeight: '21.5px',
-      // '& p': {
-      //   marginBlockStart: 8,
-      //   marginBlockEnd: 8
-      // }
+      lineHeight: '21.5px'
     }
   },
   container: {
@@ -28,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   main: {
-    flex: 1,
+    flex: 1
   },
 }));
 

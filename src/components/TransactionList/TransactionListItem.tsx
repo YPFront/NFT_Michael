@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         boxSizing: 'border-box',
         width: '100%',
         minHeight: 109,
-        background: '#FCF8F2',
+        background: theme.palette.background.default,
         position: 'relative',
         transition: 'all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         '& .playButton': {

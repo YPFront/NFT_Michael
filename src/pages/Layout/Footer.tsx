@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    background: theme.palette.primary.dark,
+    background: theme.palette.common.black,
     paddingTop: 16,
     paddingBottom: 16,
     '& a': {

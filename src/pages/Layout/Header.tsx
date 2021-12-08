@@ -75,12 +75,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& img': {
       borderRadius: '50%',
       border: '2px solid',
-      borderColor: theme.palette.secondary.main,
+      borderColor: theme.palette.primary.main,
       background: theme.palette.common.white,
       marginLeft: 10
     },
     '&:hover': {
-      background: theme.palette.secondary.main,
+      background: theme.palette.primary.main,
     },
   },
   activeProfile: {
@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: 12,
       height: 12,
       display: 'block',
-      backgroundColor: '#DA7272',
+      backgroundColor: theme.palette.primary.dark,
       position: 'absolute',
       borderRadius: '50%',
       top: -2,
@@ -116,7 +116,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   transparentHeader: {
-    background: 'linear-gradient(rgba(4, 42, 61, 0.8) 0%, rgba(12, 68, 91, 0.8) 53.48%)'
+    background: '#000000CC'
   },
   '.MuiBackdrop-root': {
     top: 100,
@@ -133,7 +133,7 @@ const Header = (props: { login?: boolean, color?: string, active?: string, trans
   const handleDrawerClose = () => setDrawerOpen(false);
 
   return (
-    <AppBar className={clsx(classes.appBar, color == 'primary' ? classes.primaryAppBar : '', transparent == true ? classes.transparentHeader : '')} position='absolute'>
+    <AppBar className={clsx(classes.appBar, color == 'primary' ? classes.primaryAppBar : '', classes.transparentHeader)} position='absolute'>
       {mediaMatches == false ? (
         <Toolbar className={clsx(classes.toolBar, 'container')}>
           <Box width={1} display='flex' flexDirection='row' justifyContent='space-between' alignItems='center'>

@@ -50,7 +50,6 @@ const Main = (props: any) => {
         <Grid item md={1} xs={12} className={classes.tabletHidden}>
           <Box width={1} textAlign='center'>
             <LottieImage src={PGoldMark} width={90} height={100}></LottieImage>
-            
           </Box>
         </Grid>
         <Grid item md={6} xs={12}>

@@ -9,7 +9,7 @@ import character1 from 'src/assets/img/character1.svg';
 import character2 from 'src/assets/img/character2.svg';
 import CreatorBack from 'src/assets/img/creatorBack.svg';
 import { ReactComponent as Eye } from 'src/assets/img/eye.svg';
-import CheckBadge from 'src/assets/img/checkBadge.svg';
+import CheckBadge from 'src/assets/img/checkBadge_red.svg';
 import PortionButton from 'src/components/PortionButton';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '9px 19px',
     marginRight: 18,
     '&.active': {
-      background: '#0066991A',
+      background: '#EB57571A',
     },
     '& svg': {
       marginRight: 12.5
@@ -137,67 +137,19 @@ const CreatorSection = () => {
         <Box>
           <Box mt={3}>
             <img src={CreatorBack} className={classes.creatorBack} />
-            <Avatar src={AvatarImg} className={classes.avatar}></Avatar>
           </Box>
         </Box>
-        <Box px={5} pb={4}>
-          <Box pb={4}>
+        <Box px={5} py={4}>
+          <Box>
             <p>
               <b>Ron English</b> <Link href='#'>@ronenglish</Link> <img src={CheckBadge} />
             </p>
             <p>Italian ComicBook artist working for Image, DC, Marvel, Netflix, Boom!studios.</p>
-            <Box display='flex' flexWrap='wrap'>
-              <PortionButton color='primary' size='small' radius='hard' outline={true} className={clsx(classes.smallButton, 'active')}>
+            <Box display='flex' flexWrap='wrap' alignItems='center'>
+              <PortionButton color='primary' size='small' radius='hard' outline={true} className={clsx(classes.smallButton)}>
                 <Eye className={classes.eye} /> Following
               </PortionButton>
               <p> 1,255 following </p>
-            </Box>
-          </Box>
-          <Box>
-            <b>More from Ron</b>
-            <Box className={classes.carousel} mt={1} mb={3}>
-              <Slider dots={false} rows={1} slidesToShow={2} touchMove={true} swipeToSlide={false} swipe={true} ref={(slider) => (sliderRef = slider)} variableWidth={true} waitForAnimate={false}>
-                {moreCharacters.map((item, i) => (
-                  <Link href={item.link} key={i}>
-                    <img src={item.src} />
-                  </Link>
-                ))}
-              </Slider>
-            </Box>
-            <Box display='flex' gridGap={5}>
-              <Box flexGrow={1}>
-                <PortionButton color='primary' className={classes.bigButton} fullWidth={true}>
-                  {mediaMatches ? 'See all' : 'See all of Matteo’s creations'}
-                </PortionButton>
-              </Box>
-              <Box className={classes.tabletHidden}>
-                <PortionButton
-                  className={classes.roundButton}
-                  color='primary'
-                  outline={true}
-                  radius='hard'
-                  onClick={() => {
-                    sliderRef.slickPrev();
-                  }}
-                >
-                  {' '}
-                  &lt;{' '}
-                </PortionButton>
-              </Box>
-              <Box className={classes.tabletHidden}>
-                <PortionButton
-                  className={classes.roundButton}
-                  color='primary'
-                  outline={true}
-                  radius='hard'
-                  onClick={() => {
-                    sliderRef.slickNext();
-                  }}
-                >
-                  {' '}
-                  &gt;{' '}
-                </PortionButton>
-              </Box>
             </Box>
           </Box>
         </Box>

@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   avatar: {
     border: '2px solid',
-    borderColor: theme.palette.secondary.main,
+    borderColor: theme.palette.primary.main,
     padding: 2,
     width: 35,
     height: 35,

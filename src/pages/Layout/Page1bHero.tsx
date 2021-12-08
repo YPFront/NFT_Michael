@@ -7,15 +7,13 @@ import AvatarImg from 'src/assets/img/avatar.svg';
 import Character from 'src/assets/img/character.svg';
 import CheckBadge from 'src/assets/img/checkBadge.svg';
 import Expand from 'src/assets/img/expand.svg';
-import Eye from 'src/assets/img/eye.svg';
-import Facebook from 'src/assets/img/facebook.svg';
-import LinkImg from 'src/assets/img/link.svg';
 import Live from 'src/assets/img/live.svg';
-import Telegram from 'src/assets/img/telegram.svg';
-import Twitter from 'src/assets/img/twitter.svg';
+import {ReactComponent as Eye} from 'src/assets/img/eye.svg';
+import {ReactComponent as Facebook} from 'src/assets/img/facebook.svg';
+import {ReactComponent as LinkImg} from 'src/assets/img/link.svg';
+import {ReactComponent as Telegram} from 'src/assets/img/telegram.svg';
+import {ReactComponent as Twitter} from 'src/assets/img/twitter.svg';
 import ArrowDown from 'src/assets/lottie/arrow_down.json';
-import Bubbles from 'src/assets/lottie/bubbles.json';
-import Octopus from 'src/assets/lottie/octopus.json';
 import SubmitBidForm from 'src/components/SubmitBidForm';
 import LottieImage from '../../components/LottieImage';
 import PortionButton from '../../components/PortionButton';
@@ -23,10 +21,10 @@ import PortionButton from '../../components/PortionButton';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     minHeight: '100vh',
-    background: 'linear-gradient(180deg, #042A3D 0%, #0C445B 53.48%)',
+    background: theme.palette.primary.light,
     overflow: 'hidden',
     position: 'relative',
-    color: theme.palette.common.white,
+    color: theme.palette.common.black,
     [theme.breakpoints.down('lg')]: {
       minHeight: 'unset',
     },
@@ -82,7 +80,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       paddingBottom: 0,
     },
     '& b': {
-      color: theme.palette.secondary.main,
+      color: theme.palette.common.white,
       fontWeight: 'normal',
     },
   },
@@ -110,7 +108,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   avatar: {
     border: '2px solid',
-    borderColor: theme.palette.secondary.main,
+    borderColor: theme.palette.common.black,
     padding: 2,
     width: 60,
     height: 60,
@@ -182,29 +180,34 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   roundButton: {
-    borderRadius: '50%',
-    padding: '10px',
-    minWidth: 'unset',
-    minHeight: 'unset',
-    marginRight: 17,
-    [theme.breakpoints.down('sm')]: {
-      padding: '7px',
-      marginRight: 10,
-      '& img': {
-        width: 15,
-        height: 15,
+    '&.MuiButton-root': {
+      borderRadius: '50%',
+      padding: '10px',
+      minWidth: 'unset',
+      minHeight: 'unset',
+      marginRight: 17,
+      width: 42,
+      height: 42,
+      [theme.breakpoints.down('sm')]: {
+        padding: '7px',
+        marginRight: 10,
+        '& img': {
+          width: 15,
+          height: 15,
+        },
       },
-    },
+    }    
   },
   moveDown: {
     width: '100%',
     height: 33,
     marginTop: -40,
-    marginBottom: 40,
+    paddingBottom: 40,
+    background: theme.palette.background.default,
     '& a': {
       position: 'absolute',
       zIndex: 1,
-      background: '#0D455C',
+      background: theme.palette.primary.light,
       borderRadius: '50%',
       padding: '9px 9px',
       left: 'calc(25% - 40px)',
@@ -229,8 +232,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     opacity: 0.5
   },
   appBar: {
-    background: 'linear-gradient(180deg, #042A3D 0%, #0C445B 78%)',
-    color: theme.palette.common.white,
+    background: theme.palette.primary.dark,
+    color: theme.palette.common.black,
     boxShadow: 'none',
     height: 100,
     transition: 'height 0.3s',
@@ -255,7 +258,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '8px 39px',
   },
   live: {
-    color: '#3EC293',
+    color: theme.palette.secondary.main,
     marginBottom: 8,
     '& img': {
       marginRight: 5,
@@ -348,13 +351,6 @@ const Hero = () => {
   return (
     <div ref={thisRef}>
       <div className={clsx(classes.root, 'container')}>
-        <div className={classes.background1}>
-          <LottieImage width={936} height={489} src={Octopus}/>
-        </div>
-        <div className={classes.bubbles}>
-          <LottieImage width={300} height={300} src={Bubbles}/>
-        </div>
-
         <Grid container className={classes.main} spacing={10}>
           <Grid item md={6} xs={12} className={clsx(classes.characterContainer, classes.mobileHidden)}>
             <Paper elevation={20} square>
@@ -441,23 +437,23 @@ const Hero = () => {
             <Box className={classes.attributes} display='flex' justifyContent='space-between'>
               <Box>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.smallButton}>
-                  <img src={Eye} /> Watch
+                  <Eye/> &nbsp; Watch
                 </PortionButton>
                 <span className={classes.tabletHidden}>Views: 597</span>
               </Box>
               <Box flexGrow={1} className={classes.mobileHidden}></Box>
               <Box>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={Facebook} />
+                  <Facebook/>
                 </PortionButton>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={Twitter} />
+                  <Twitter/>
                 </PortionButton>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={Telegram} />
+                  <Telegram/>
                 </PortionButton>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={LinkImg} />
+                  <LinkImg/>
                 </PortionButton>
               </Box>
             </Box>
@@ -486,7 +482,7 @@ const Hero = () => {
               Bid must be 100th of an ETH higher than <b>18.333 ETH</b>
             </Box>
             <Box minWidth={165} display='flex' justifyContent='space-between' alignItems='center'>
-              <PortionButton color='secondary' className={classes.navbarButton} animation={true}>
+              <PortionButton color='secondary' className={classes.navbarButton}>
                 Place a Bid
               </PortionButton>
             </Box>

@@ -11,22 +11,22 @@ const media = {
 export const theme = createTheme({
     palette: {
       primary: {
-        main: '#006699',
-        dark: '#09394E',
-        light: '#1F6E85',
+        dark: '#EA5254',
+        main: '#EB5757',
+        light: '#EB5757',
       },
       common: {
-        black: '#333333',
+        black: '#000000',
       },
       grey: {
         600: '#638796',
       },
       secondary: {
-        main: '#DAB679',
-        dark: '#CB9C4E',
+        main: '#000000',
+        dark: '#000000',
       },
       background: {
-        default: '#FCF8F2'
+        default: '#F2F2F2'
       }
     },
     shape: {
@@ -35,13 +35,13 @@ export const theme = createTheme({
     typography: {
       fontFamily: `"Lato"`,
       h1: {
-        fontFamily: '"DM Serif Display"',
+        fontFamily: '"Open Sans"',
       },
       h2: {
-        fontFamily: '"DM Serif Display"',
+        fontFamily: '"Open Sans"',
       },
       h3: {
-        fontFamily: '"DM Serif Display"',
+        fontFamily: '"Open Sans"',
         [`@media (max-width:${media.lg}px)`]: {
           fontSize: 30,
           lineHeight: '36px'

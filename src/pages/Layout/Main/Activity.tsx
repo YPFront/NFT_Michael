@@ -91,7 +91,6 @@ const ActivitySection = () => {
 
   return (
     <div className={classes.root}>
-      <img src={Background1} className={classes.background1}/>
       <Typography variant="h4"> Activity </Typography>
       <ActivityList data={data}></ActivityList>
       <LottieImage style={lottieMedia} src={GeoShape} width={mediaMatches ? '80%' : 396}/>

@@ -6,7 +6,7 @@ import { ActivityType } from './ActivityType';
 const useStyles = makeStyles((theme: Theme) => ({
   button: {
     background: theme.palette.background.default,
-    border: '1px solid ' + theme.palette.secondary.main,
+    border: '1px solid #BDBDBD',
     alignItems: 'center',
     height: 70,
     padding: 0,
@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: '24px',
     fontSize: 20,
     textAlign: 'left',
+    borderRadius: 10,
     '& .MuiButton-label': {
       display: 'flex',
       width: '100%',

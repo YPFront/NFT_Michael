@@ -80,12 +80,12 @@ export default function SubmitBidForm(props: any) {
               <small> Bid must be 100th of an ETH higher than 18.333 ETH </small>
             </Box>
           </Box>
-          <PortionButton color='secondary' animation={true} onClick={(e: any) => setShowForm(!showForm)} className={classes.button}>
+          <PortionButton color='secondary' onClick={(e: any) => setShowForm(!showForm)} className={classes.button}>
             Place a Bid
           </PortionButton>
         </Paper>
       ) : (
-        <PortionButton color='secondary' animation={true} onClick={(e: any) => setShowForm(!showForm)} className={classes.button}>
+        <PortionButton color='secondary' onClick={(e: any) => setShowForm(!showForm)} className={classes.button}>
           Place a Bid
         </PortionButton>
       )}
