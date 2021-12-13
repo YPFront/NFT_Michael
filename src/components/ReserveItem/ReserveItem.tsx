@@ -2,15 +2,17 @@ import { Avatar, Box, Link } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PortionButton from '../PortionButton';
-import { GalleryItemType } from './GalleryType';
+import { ReserveItemType } from './ReserveType';
 import PlayArrowOutlinedIcon from '@material-ui/icons/PlayArrowOutlined';
 import StopOutlinedIcon from '@material-ui/icons/StopOutlined';
 import { useRef, useState } from 'react';
+import Timer from 'src/assets/img/timer.svg';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
+        position: 'relative',
         background: theme.palette.common.white,
-        boxShadow: '2px 6px 20px rgb(16 16 16 / 10%)'
+        boxShadow: '2px 6px 20px rgb(16 16 16 / 10%)',
     },
     avatar: {
         border: '2px solid',
@@ -61,6 +63,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         minWidth: 'unset',
         bottom: 15,
         right: 15,
+        // backgroundColor: '#09394ECC',
         backgroundColor: theme.palette.primary.main,
         '& .MuiSvgIcon-root': {
             fill: theme.palette.common.white,
@@ -73,15 +76,28 @@ const useStyles = makeStyles((theme: Theme) => ({
             },
         },
     },
+    timerContainer:{
+        fontSize:16,
+        padding:"7px 10px",
+        position:"absolute",
+        top:20,
+        left:20,
+        zIndex:10,
+        backgroundColor:"white",
+        '& img':{
+            verticalAlign:'middle',
+            marginRight:12
+        }
+    }
 }));
 
 type Props = {
-    data: GalleryItemType;
+    data: ReserveItemType;
     showUser?: boolean;
     className?: string;
 };
 
-const GalleryItem = (props: Props) => {
+const ReserveItem = (props: Props) => {
     const { data, showUser, className } = props;
     const classes = useStyles();
     const [playStatus, setPlayStatus] = useState(false);
@@ -102,7 +118,11 @@ const GalleryItem = (props: Props) => {
 
     return (
         <Link className={clsx(classes.link, className)}>
-            <Box width={1} display='flex' flexDirection='column' justifyContent='space-around' gridGap={16} className={classes.root}>
+            <Box display='flex' flexDirection='column' justifyContent='space-around' gridGap={16} className={classes.root}>
+                <Box className={classes.timerContainer}>
+                    <img src={Timer}/>
+                    {data.time}
+                </Box>
                 {data.srcType == 'image' ? (
                     <img src={data.src} />
                 ) : (
@@ -124,7 +144,7 @@ const GalleryItem = (props: Props) => {
                         <Avatar className={classes.avatar} src={data.avatar} /> <div className={classes.username}>{data.userName}</div>
                     </Box>
                     <Box>
-                        {data.prt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} PRT or {data.eth.toFixed(2)} ETH
+                        Reserve Price {data.eth.toFixed(2)} ETH
                     </Box>
                 </Box>
             </Box>
@@ -132,4 +152,4 @@ const GalleryItem = (props: Props) => {
     );
 };
 
-export default GalleryItem;
+export default ReserveItem;

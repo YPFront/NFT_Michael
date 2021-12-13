@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: '100%',
         height: 550,
         overflow: 'hidden',
-        background: 'linear-gradient(180deg, #042A3D 0%, #0C445B 53.48%)',
+        background: theme.palette.primary.main,
         position: 'relative',
         '& img': {
             width: 170,
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         boxShadow: 'rgb(0 0 0 / 50%) 4px 6px 10px',
         zIndex: 1,
         borderRadius: 20,
-        background: '#042A3D',
+        background: theme.palette.background.default,
         padding: '48px 100px',
         boxSizing: 'border-box',
         backgroundImage: `url(${vectorTopLeft}), url(${vectorTopRight}), url(${vectorBottomLeft}), url(${vectorBottomRight})`,
@@ -86,15 +86,17 @@ const useStyles = makeStyles((theme: Theme) => ({
         height: '90%',
         display: 'flex',
         flexDirection: 'column',
-        color: theme.palette.common.white,
+        color: theme.palette.secondary.dark,
         textAlign: 'center',
         justifyContent: 'center',
         '& .welcome': {
+            color: theme.palette.secondary.main,
             fontSize: 20,
             lineHeight: '30px',
             margin: 0,
         },
         '& h2': {
+            color: theme.palette.primary.dark,
             fontSize: 48,
         },
         [theme.breakpoints.down('sm')]: {
@@ -156,7 +158,7 @@ const Hero = () => {
     let [showAnimation, setShowAnimation] = useState(false);
 
     const drawAnimationBackground = () => {
-        setTimeout(() => {setShowAnimation(true)}, 200)
+        setTimeout(() => {setShowAnimation(true)}, 500)
         return (
             <div className={classes.animationBackgroundRoot}>
                 <div className={classes.titleWrapper}>

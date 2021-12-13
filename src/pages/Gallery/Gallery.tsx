@@ -37,7 +37,7 @@ export default function Gallery({}: Props) {
   return (
     <ThemeProvider theme={PortionTheme}>
       <div className={classes.root}>
-        <Header login={false} color="primary" transparent={true} active="marketplace"/>
+        <Header login={false} color="primary" transparent={true} active="marketplace" search={true}/>
         <main className={classes.main}>
           <Hero></Hero>
           <GalleryMain></GalleryMain>

@@ -23,7 +23,7 @@ export const theme = createTheme({
       },
       secondary: {
         main: '#000000',
-        dark: '#000000',
+        dark: '#333333',
       },
       background: {
         default: '#F2F2F2'
