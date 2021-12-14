@@ -8,12 +8,12 @@ import Character from 'src/assets/img/character.svg';
 import CheckBadge from 'src/assets/img/checkBadge.svg';
 import Etherum from 'src/assets/img/etherum.svg';
 import Expand from 'src/assets/img/expand.svg';
-import Eye from 'src/assets/img/eye.svg';
-import Facebook from 'src/assets/img/facebook.svg';
-import LinkImg from 'src/assets/img/link.svg';
+import {ReactComponent as Eye} from 'src/assets/img/eye.svg';
+import {ReactComponent as Facebook} from 'src/assets/img/facebook.svg';
+import {ReactComponent as LinkImg} from 'src/assets/img/link.svg';
 import PWhiteMark from 'src/assets/img/PWhiteMark.svg';
-import Telegram from 'src/assets/img/telegram.svg';
-import Twitter from 'src/assets/img/twitter.svg';
+import {ReactComponent as Telegram} from 'src/assets/img/telegram.svg';
+import {ReactComponent as Twitter} from 'src/assets/img/twitter.svg';
 import ArrowDown from 'src/assets/lottie/arrow_down.json';
 import Bubbles from 'src/assets/lottie/bubbles.json';
 import Octopus from 'src/assets/lottie/octopus.json';
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       paddingBottom: 0,
     },
     '& b': {
-      color: theme.palette.secondary.main,
+      color: theme.palette.common.white,
       fontWeight: 'normal',
     },
   },
@@ -215,10 +215,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: 33,
     marginTop: -40,
     marginBottom: 40,
+    background: theme.palette.background.default,
     '& a': {
       position: 'absolute',
       zIndex: 1,
-      background: '#0D455C',
+      background: theme.palette.primary.light,
       borderRadius: '50%',
       padding: '9px 9px',
       left: 'calc(25% - 40px)',
@@ -243,8 +244,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     opacity: 0.5
   },
   appBar: {
-    background: 'linear-gradient(180deg, #042A3D 0%, #0C445B 78%)',
-    color: theme.palette.common.white,
+    background: theme.palette.primary.dark,
+    color: theme.palette.common.black,
     boxShadow: 'none',
     height: 100,
     transition: 'height 0.3s',
@@ -433,7 +434,7 @@ const Hero = () => {
                 <PortionButton color='secondary'>Buy</PortionButton>
               </Grid>
               <Grid item xs={12} md={6}>
-                <PortionButton color='secondary' outline={true}>
+                <PortionButton color='inherit' outline={true}>
                   Make an Offer
                 </PortionButton>
               </Grid>
@@ -441,23 +442,23 @@ const Hero = () => {
             <Box className={classes.attributes} display='flex' justifyContent='space-between'>
               <Box>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.smallButton}>
-                  <img src={Eye} /> Watch
+                  <Eye /> &nbsp; Watch
                 </PortionButton>
                 <span className={classes.tabletHidden}>Views: 597</span>
               </Box>
               <Box flexGrow={1} className={classes.mobileHidden}></Box>
               <Box>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={Facebook} />
+                  <Facebook/>
                 </PortionButton>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={Twitter} />
+                  <Twitter/>
                 </PortionButton>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={Telegram} />
+                  <Telegram/>
                 </PortionButton>
                 <PortionButton color='inherit' size='small' radius='hard' outline={true} className={classes.roundButton}>
-                  <img src={LinkImg} />
+                  <LinkImg/>
                 </PortionButton>
               </Box>
             </Box>
@@ -489,7 +490,7 @@ const Hero = () => {
               <PortionButton color='secondary' className={classes.navbarButton}>
                 Buy
               </PortionButton>
-              <PortionButton color='secondary' outline={true} className={clsx(classes.navbarButton, classes.minWidth120)}>
+              <PortionButton color='inherit' outline={true} className={clsx(classes.navbarButton, classes.minWidth120)}>
                 Make an Offer
               </PortionButton>
             </Box>
